@@ -33,18 +33,19 @@
                <content>
                   <AnchorPane>
                      <children>
-                        <TableView fx:id="tableAlbums" layoutX="14.0" layoutY="44.0" prefHeight="543.0" prefWidth="349.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="120.0">
+                        <TableView fx:id="tableOrders" layoutX="14.0" layoutY="44.0" prefHeight="543.0" prefWidth="349.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="120.0">
                           <columns>
-                            <TableColumn fx:id="columnAlbumId" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" resizable="false" text="Užsk. Nr." />
-                            <TableColumn fx:id="columnTitle" maxWidth="50000.0" minWidth="500.0" prefWidth="500.0" text="Užsakymo Apibūdinimas" />
-                              <TableColumn fx:id="columnArtistId21" maxWidth="165.0" minWidth="165.0" prefWidth="165.0" resizable="false" text="Tel. Numeris" />
-                              <TableColumn fx:id="columnArtistId" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" resizable="false" text="Kiekis" />
-                              <TableColumn fx:id="columnArtistId2" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" resizable="false" text="Kaina" />
-                              <TableColumn fx:id="columnArtistId1" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" resizable="false" text="Tiekėjas" />
-                              <TableColumn fx:id="columnArtistId23" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" resizable="false" text="Prist. Data" />
-                              <TableColumn fx:id="columnArtistId24" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" resizable="false" text="Užsak. Data" />
-                              <TableColumn fx:id="columnArtistId241" maxWidth="90.0" minWidth="90.0" prefWidth="90.0" resizable="false" text="Satusas" />
-                              <TableColumn fx:id="columnArtistId2411" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" resizable="false" text="Vadybininkas" />
+                            <TableColumn fx:id="columnId" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" text="Nr." />
+                            <TableColumn fx:id="columnDescription" maxWidth="50000.0" minWidth="200.0" prefWidth="200.0" text="Užsakymo Apibūdinimas" />
+                              <TableColumn fx:id="columnPhone" maxWidth="165.0" minWidth="165.0" prefWidth="165.0" resizable="false" text="Tel. Numeris" />
+                              <TableColumn fx:id="columnClientName" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" text="Užsakovas" />
+                              <TableColumn fx:id="columnAmount" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" resizable="false" text="Kiekis" />
+                              <TableColumn fx:id="columnPrice" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" resizable="false" text="Kaina" />
+                              <TableColumn fx:id="columnSupplier" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" resizable="false" text="Tiekėjas" />
+                              <TableColumn fx:id="columnDevDate" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" resizable="false" text="Prist. Data" />
+                              <TableColumn fx:id="columnOrdDate" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" resizable="false" text="Užsak. Data" />
+                              <TableColumn fx:id="columnStatus" maxWidth="90.0" minWidth="90.0" prefWidth="90.0" resizable="false" text="Satusas" />
+                              <TableColumn fx:id="columnManager" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" resizable="false" text="Vadybininkas" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

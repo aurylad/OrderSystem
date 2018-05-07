@@ -1,11 +1,16 @@
 package application;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import database.table.manager.TableManager;
+import databse.tables.ArrivalDate;
 import databse.tables.Client;
-import databse.tables.Orders;
+import databse.tables.OrdersSingle;
 import databse.tables.Product;
 import databse.tables.Supplier;
 import javafx.application.Application;
@@ -18,8 +23,9 @@ public class Main extends Application {
 
 	static AbstractApplicationContext context;
 	static Client client;
-	static Orders orders;
+	static OrdersSingle orders;
 	static Product product;
+	static ArrivalDate arrivalDate;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -38,19 +44,24 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 
-		context = new ClassPathXmlApplicationContext("beans/Beans.xml");
+//		context = new ClassPathXmlApplicationContext("beans/Beans.xml");
 		
-		client = (Client) Main.context.getBean("client");
-		orders = (Orders) Main.context.getBean("orders");
-		product = (Product) Main.context.getBean("product");
-		//Supplier supplier = orders.getSupplier(); //Inner bean panaudojimas
+//		client = (Client2) Main.context.getBean("client");
+//		orders = (OrdersSingle) Main.context.getBean("ordersSingle");
+//		product = (Product2) Main.context.getBean("product"); 
+//		arrivalDate = (ArrivalDate) Main.context.getBean("arrivalDate"); // autowire
+		//Supplier supplier = orders.getSupplier(); // Inner bean 
 		//System.out.println(supplier.getAddress());
 		
-		//Testavimas ar viskas gerai veikia, sios klases bus iskviestos naudojant interfeisa
-		Controller.setFormValues();
+		//Controller.setFormValues();
 		//System.out.println(orders.getDescriptionOfOrder());
+		//TableManager.addAllToDifferentTables();
+		TableManager.queryInsert();
+		//System.out.println(arrivalDate.getOrders().getDeliveryDate()); // autowire
 		
-		TableManager.addAllToDifferentTables();
+//		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+//		Date date = new Date();
+		//System.out.println(dateFormat.format(date)); //2016/11/16 12:08:43
 		
 	}
 
@@ -62,7 +73,7 @@ public class Main extends Application {
 		return client;
 	}
 
-	public static Orders getOrders() {
+	public static OrdersSingle getOrders() {
 		return orders;
 	}
 

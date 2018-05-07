@@ -7,6 +7,7 @@
         version="2.1">
 
  <persistence-unit name="OrderDb">
+ 	<!-->provider>org.hibernate.ejb.HirbernatePersistence</provider-->
  
  	<properties>
 	    <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/order_system_db"/>
@@ -17,6 +18,7 @@
 		<property name="hibernate.format_sql" value="true"/>
 		<property name="hibernate.connection.useUnicode" value="true" />
 		<property name="hibernate.connection.characterEncoding" value="UTF-8" />
+		<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
 	</properties>
  
  </persistence-unit>

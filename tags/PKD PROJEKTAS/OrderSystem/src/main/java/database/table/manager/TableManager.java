@@ -1,32 +1,49 @@
 package database.table.manager;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import org.dom4j.rule.RuleSet;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import application.Main;
 import databse.tables.Client;
 import databse.tables.Orders;
+import databse.tables.OrdersSingle;
 import databse.tables.Product;
 import databse.tables.Supplier;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class TableManager {
 
 	static EntityManagerFactory factory;
 	static EntityManager entityManager;
-	
+	static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 	
 	//Iniciavimas
 	private static void begin() {
-		factory = Persistence.createEntityManagerFactory("OrderDb");
-		entityManager = factory.createEntityManager();
-		entityManager.getTransaction().begin();
+		
+		try {
+			factory = Persistence.createEntityManagerFactory("OrderDb");
+			entityManager = factory.createEntityManager();
+			entityManager.getTransaction().begin();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 	}
 
 	//uzdarymas
@@ -44,6 +61,8 @@ public class TableManager {
 
 		Main.getOrders().setDescriptionOfOrder(Main.getOrders().getDescriptionOfOrder());
 		Main.getOrders().setDeliveryDate(Main.getOrders().getDeliveryDate());
+		Main.getOrders().setManager(Main.getOrders().getManager());
+		
 
 		Main.getClient().setName(Main.getClient().getName());
 		Main.getClient().setPhoneNumber(Main.getClient().getPhoneNumber());
@@ -97,17 +116,43 @@ public class TableManager {
 		System.out.println(findSupplier.getCompanyName());
 	}
 
-	
-	private static void query() {
-		String jpql = "Select b From Supplier b";
+	public static void queryInsert () {
+		
+		begin();
+		
+		String jpql = "Select a From Orders a";
 		Query query = entityManager.createQuery(jpql);
-
+		
 		@SuppressWarnings("unchecked")
-		List<Supplier> resultList = query.getResultList();
-
-		for (Supplier supll : resultList) {
-			System.out.println(supll.getCompanyName());
+		List<Orders> resultList = query.getResultList();		
+		
+		for (Orders order : resultList) {
+			System.out.println(dateFormat.format(order.getOrderDate()));
 		}
+		
+		
+		
+//		Orders orders = new Orders();
+//		orders.setDeliveryDate("2020");
+//		orders.setDescriptionOfOrder("uzsakymas naujas");
+//		orders.setManager("jonas");
+//		orders.setOrder_amount(23.0);
+//		orders.setOrder_name("Klientas");
+//		orders.setOrder_phoneNumber("8654231563");
+//		orders.setOrder_price(32.0);
+//		orders.setOrder_supplier("Etovis");
+//		orders.setStatus("Vykdomas");
+//		orders.setOrderDate(date);
+//		
+//		try {
+//			entityManager.persist(orders);
+//		} catch (RuntimeException e) {
+//			System.out.println(e);
+//		}
+//		
+//		
+//		
+		end();
 	}
 
 	
