@@ -1,9 +1,13 @@
 package databse.tables;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.SecondaryTable;
+import javax.persistence.Table;
 
 @Entity
 public class Client {
@@ -12,6 +16,7 @@ public class Client {
 	private String name;
 	private String phoneNumber;
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getClientID() {
@@ -38,4 +43,7 @@ public class Client {
 		this.phoneNumber = phoneNumber;
 	}
 
+	
+	
+	
 }
