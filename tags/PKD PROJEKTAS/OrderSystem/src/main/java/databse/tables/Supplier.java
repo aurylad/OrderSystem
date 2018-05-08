@@ -3,7 +3,6 @@ package databse.tables;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-//@Table(name = "supplier") Reikalinga tik jei klases pavadinimas skiriasi nuo lenteles pavadinimo db
 @Entity
 public class Supplier {
 
@@ -14,11 +13,6 @@ public class Supplier {
 	private String phoneNumber;
 	private String person;
 
-	// @Column(name = "comanyCode") Reikalinga tik jei stulpelio pavadinimas
-	// skiriasi nuo stulpelio pavadinimo db
-	// @GeneratedValue(strategy = GenerationType.IDENTITY) reikalingas tik jei
-	// duomenu bazeje stulpelis nustatytas (auto-increment)
-	// @Id naudojamas kai stulpelis yra primary key
 	@Id
 	public Integer getCompanyCode() {
 		return companyCode;
@@ -68,4 +62,12 @@ public class Supplier {
 		this.person = person;
 	}
 
+	@Override
+	public String toString() {
+		return "Supplier [companyCode=" + companyCode + ", companyName=" + companyName + ", country=" + country
+				+ ", address=" + address + ", phoneNumber=" + phoneNumber + ", person=" + person + "]";
+	}
+
+	
+	
 }

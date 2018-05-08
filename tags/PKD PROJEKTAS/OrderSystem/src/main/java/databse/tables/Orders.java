@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SecondaryTable;
 import javax.persistence.SecondaryTables;
-import javax.persistence.Table;
 
 @Entity
 @SecondaryTables({ @SecondaryTable(name = "Client", pkJoinColumns = @PrimaryKeyJoinColumn(name = "clientID")),
@@ -37,6 +36,7 @@ public class Orders {
 	private Double order_price;
 	@Column(name = "supplier", table = "Product")
 	private String order_supplier;
+
 
 	public Integer getOrderId() {
 		return orderId;
@@ -102,7 +102,7 @@ public class Orders {
 		this.order_phoneNumber = order_phoneNumber;
 	}
 
-	public double getOrder_amount() {
+	public Double getOrder_amount() {
 		return order_amount;
 	}
 
@@ -110,7 +110,7 @@ public class Orders {
 		this.order_amount = order_amount;
 	}
 
-	public double getOrder_price() {
+	public Double getOrder_price() {
 		return order_price;
 	}
 
@@ -124,6 +124,14 @@ public class Orders {
 
 	public void setOrder_supplier(String order_supplier) {
 		this.order_supplier = order_supplier;
+	}
+
+	@Override
+	public String toString() {
+		return "Orders [orderId=" + orderId + ", descriptionOfOrder=" + descriptionOfOrder + ", manager=" + manager
+				+ ", status=" + status + ", deliveryDate=" + deliveryDate + ", orderDate=" + orderDate + ", order_name="
+				+ order_name + ", order_phoneNumber=" + order_phoneNumber + ", order_amount=" + order_amount
+				+ ", order_price=" + order_price + ", order_supplier=" + order_supplier + "]";
 	}
 
 }

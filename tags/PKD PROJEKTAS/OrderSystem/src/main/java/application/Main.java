@@ -8,9 +8,7 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import database.table.manager.TableManager;
-import databse.tables.ArrivalDate;
 import databse.tables.Client;
-import databse.tables.OrdersSingle;
 import databse.tables.Product;
 import databse.tables.Supplier;
 import javafx.application.Application;
@@ -23,9 +21,9 @@ public class Main extends Application {
 
 	static AbstractApplicationContext context;
 	static Client client;
-	static OrdersSingle orders;
+	//static OrdersSingle orders;
 	static Product product;
-	static ArrivalDate arrivalDate;
+	//static ArrivalDate arrivalDate;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -56,7 +54,7 @@ public class Main extends Application {
 		//Controller.setFormValues();
 		//System.out.println(orders.getDescriptionOfOrder());
 		//TableManager.addAllToDifferentTables();
-		TableManager.queryInsert();
+		//TableManager.querySelect();
 		//System.out.println(arrivalDate.getOrders().getDeliveryDate()); // autowire
 		
 //		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -73,9 +71,9 @@ public class Main extends Application {
 		return client;
 	}
 
-	public static OrdersSingle getOrders() {
-		return orders;
-	}
+//	public static OrdersSingle getOrders() {
+//		return orders;
+//	}
 
 	public static Product getProduct() {
 		return product;

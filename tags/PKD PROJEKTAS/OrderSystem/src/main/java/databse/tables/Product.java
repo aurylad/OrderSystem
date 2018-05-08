@@ -1,29 +1,17 @@
 package databse.tables;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SecondaryTable;
-import javax.persistence.Table;
 
 @Entity
 public class Product {
-	
+
 	private Integer productID;
 	private double amount;
 	private double price;
 	private String supplier;
-	
-
-	
-
-//	public Product(int amount, double price, String supplier) {
-//		this.amount = amount;
-//		this.price = price;
-//		this.supplier = supplier;
-//	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
