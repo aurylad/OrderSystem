@@ -4,9 +4,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import beans.BeanAnnotation;
 import database.table.manager.TableManager;
 import databse.tables.Client;
 import databse.tables.Product;
@@ -28,9 +31,9 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/application/Form.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/fxml/css/files/MainWindow.fxml"));
 			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("/fxml/css/files/application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setMaximized(true);
 			primaryStage.show();
@@ -42,6 +45,8 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 
+		
+		      
 //		context = new ClassPathXmlApplicationContext("beans/Beans.xml");
 		
 //		client = (Client2) Main.context.getBean("client");

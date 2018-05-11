@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="882.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="882.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
    <children>
       <Label fx:id="dateLabel" layoutX="656.0" layoutY="639.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0" />
       <Label fx:id="statusLabel" layoutX="14.0" layoutY="639.0" text="Label" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
@@ -52,8 +52,9 @@
                            </columnResizePolicy>
                         </TableView>
                         <Button layoutX="20.0" layoutY="728.0" mnemonicParsing="false" text="Atidaryti" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0" />
-                        <Button layoutX="111.0" layoutY="728.0" mnemonicParsing="false" text="Pridėti" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="120.0" />
+                        <Button layoutX="111.0" layoutY="728.0" mnemonicParsing="false" onAction="#setAddScene" text="Pridėti" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="120.0" />
                         <Button layoutX="20.0" layoutY="46.0" mnemonicParsing="false" text="Atnaujinti" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="45.0" />
+                        <TextField fx:id="txtFieldSearch" layoutX="1066.0" layoutY="76.0" onKeyTyped="#searchRecord" prefHeight="31.0" prefWidth="196.0" promptText="Paieška (tel., vadybininkas,)" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -74,16 +75,16 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <TextField fx:id="txtFieldEmployeeId" layoutX="462.0" layoutY="94.0" minWidth="300.0" prefHeight="25.0" prefWidth="139.0" promptText="Spustelkite įrašą lentelėje" AnchorPane.leftAnchor="1200.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="90.0" />
-                        <TextField fx:id="txtFieldFirstName" layoutX="462.0" layoutY="187.0" minWidth="300.0" prefHeight="25.0" prefWidth="139.0" promptText="Spustelkite įrašą lentelėje" AnchorPane.leftAnchor="1200.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="190.0" />
-                        <TextField fx:id="txtFieldLastName" layoutX="462.0" layoutY="142.0" minWidth="300.0" prefHeight="25.0" prefWidth="139.0" promptText="Spustelkite įrašą lentelėje" AnchorPane.leftAnchor="1200.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="140.0" />
+                        <TextField fx:id="txtFieldCompanyCode" layoutX="462.0" layoutY="94.0" minWidth="300.0" prefHeight="25.0" prefWidth="139.0" promptText="Spustelkite įrašą lentelėje" AnchorPane.leftAnchor="1200.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="90.0" />
+                        <TextField fx:id="txtFieldCompanyCountry" layoutX="462.0" layoutY="187.0" minWidth="300.0" prefHeight="25.0" prefWidth="139.0" promptText="Spustelkite įrašą lentelėje" AnchorPane.leftAnchor="1200.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="190.0" />
+                        <TextField fx:id="txtFieldCompanyName" layoutX="462.0" layoutY="142.0" minWidth="300.0" prefHeight="25.0" prefWidth="139.0" promptText="Spustelkite įrašą lentelėje" AnchorPane.leftAnchor="1200.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="140.0" />
                         <Separator fx:id="secondSeparator" layoutX="390.0" layoutY="290.0" prefHeight="3.0" prefWidth="291.0" AnchorPane.leftAnchor="1200.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="400.0" />
-                        <Button fx:id="buttonUpdateEmployees" layoutX="1200.0" layoutY="430.0" mnemonicParsing="false" text="Atnaujinti" AnchorPane.leftAnchor="1200.0" AnchorPane.topAnchor="430.0" />
+                        <Button layoutX="1200.0" layoutY="430.0" mnemonicParsing="false" text="Atnaujinti" AnchorPane.leftAnchor="1200.0" AnchorPane.topAnchor="430.0" />
                         <Button fx:id="buttonDeleteEmployees" layoutX="475.0" layoutY="305.0" mnemonicParsing="false" text="Ištrinti" AnchorPane.leftAnchor="1300.0" AnchorPane.topAnchor="430.0" />
                         <Button fx:id="buttonAddEmployees" layoutX="562.0" layoutY="305.0" mnemonicParsing="false" text="Naujas" AnchorPane.leftAnchor="1380.0" AnchorPane.topAnchor="430.0" />
-                        <TextField fx:id="txtFieldSecondTitle" layoutX="462.0" layoutY="230.0" minWidth="300.0" promptText="Spustelkite įrašą lentelėje" AnchorPane.leftAnchor="1200.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="240.0" />
-                        <TextField fx:id="txtFieldLastName1" layoutX="1050.0" layoutY="287.0" minWidth="300.0" prefHeight="25.0" prefWidth="139.0" promptText="Spustelkite įrašą lentelėje" AnchorPane.leftAnchor="1200.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="290.0" />
-                        <TextField fx:id="txtFieldLastName2" layoutX="472.0" layoutY="152.0" minWidth="300.0" prefHeight="25.0" prefWidth="139.0" promptText="Spustelkite įrašą lentelėje" AnchorPane.leftAnchor="1200.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="340.0" />
+                        <TextField fx:id="txtFieldCompanyAdress" layoutX="462.0" layoutY="230.0" minWidth="300.0" promptText="Spustelkite įrašą lentelėje" AnchorPane.leftAnchor="1200.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="240.0" />
+                        <TextField fx:id="txtFieldCompanyPhone" layoutX="1050.0" layoutY="287.0" minWidth="300.0" prefHeight="25.0" prefWidth="139.0" promptText="Spustelkite įrašą lentelėje" AnchorPane.leftAnchor="1200.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="290.0" />
+                        <TextField fx:id="txtFieldCompanyPerson" layoutX="472.0" layoutY="152.0" minWidth="300.0" prefHeight="25.0" prefWidth="139.0" promptText="Spustelkite įrašą lentelėje" AnchorPane.leftAnchor="1200.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="340.0" />
                      </children>
                   </AnchorPane>
                </content>

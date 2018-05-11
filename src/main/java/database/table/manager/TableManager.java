@@ -68,7 +68,7 @@ public class TableManager {
 	}
 
 
-	public static void querySelect() {
+	public static void getDataFromDatabase() {
 
 		begin();
 		
@@ -109,27 +109,6 @@ public class TableManager {
 	}
 
 
-	public static ObservableList<Orders> getOrdersObservableList() {
-		return ordersObservableList;
-	}
-
-
-	public static void setOrdersObservableList(ObservableList<Orders> ordersObservableList) {
-		TableManager.ordersObservableList = ordersObservableList;
-	}
-
-	
-
-	public static ObservableList<Supplier> getSupplierObservableList() {
-		return supplierObservableList;
-	}
-
-
-	public static void setSupplierObservableList(ObservableList<Supplier> supplierObservableList) {
-		TableManager.supplierObservableList = supplierObservableList;
-	}
-
-
 	private static void remove() {
 		Supplier reference = entityManager.getReference(Supplier.class, 100002);
 		entityManager.remove(reference);
@@ -152,6 +131,26 @@ public class TableManager {
 	private static void find() {
 		Supplier findSupplier = entityManager.find(Supplier.class, 100002);
 		System.out.println(findSupplier.getCompanyName());
+	}
+	
+	public static ObservableList<Orders> getOrdersObservableList() {
+		return ordersObservableList;
+	}
+
+
+	public static void setOrdersObservableList(ObservableList<Orders> ordersObservableList) {
+		TableManager.ordersObservableList = ordersObservableList;
+	}
+
+	
+
+	public static ObservableList<Supplier> getSupplierObservableList() {
+		return supplierObservableList;
+	}
+
+
+	public static void setSupplierObservableList(ObservableList<Supplier> supplierObservableList) {
+		TableManager.supplierObservableList = supplierObservableList;
 	}
 
 }
