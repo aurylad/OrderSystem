@@ -101,15 +101,9 @@ public class MainController implements Initializable {
 		ApplicationContext context = new AnnotationConfigApplicationContext(BeanAnnotation.class);
 
 		Supplier supplierObj = (Supplier) context.getBean("supplierBean");
-		supplierObj.setAddress("annotation");
-		System.out.println(supplierObj.getAddress());
+//		supplierObj.setAddress("annotation");
+//		System.out.println(supplierObj.getAddress());
 
-		AbstractApplicationContext context2 = new ClassPathXmlApplicationContext("beans/Beans.xml");
-		Orders ordersObj = (Orders) context2.getBean("ordersBean");
-		ordersObj.setManager("jonas");
-		System.out.println(ordersObj.getManager());
-		Orders ordersObj2 = (Orders) context2.getBean("ordersBean");
-		System.out.println(ordersObj2.getManager());
 	}
 
 	private void setCellInfoTable() {

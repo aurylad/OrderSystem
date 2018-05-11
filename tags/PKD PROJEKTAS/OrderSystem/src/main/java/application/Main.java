@@ -46,7 +46,7 @@ public class Main extends Application {
 		launch(args);
 
 		
-		      
+		
 //		context = new ClassPathXmlApplicationContext("beans/Beans.xml");
 		
 //		client = (Client2) Main.context.getBean("client");

@@ -9,21 +9,21 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import application.Main;
+import application.AddOrderControlller;
 import databse.tables.Orders;
 import databse.tables.Supplier;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 
 public class TableManager {
 
 	static EntityManagerFactory factory;
 	static EntityManager entityManager;
 	static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-	//static Orders order = new Orders();
 	private static List<Orders> ordersList;
 	private static ObservableList<Orders> ordersObservableList = FXCollections.observableArrayList();
-	
+
 	private static List<Supplier> supplierList;
 	private static ObservableList<Supplier> supplierObservableList = FXCollections.observableArrayList();
 
@@ -37,84 +37,65 @@ public class TableManager {
 		}
 	}
 
-	
 	private static void end() {
 		entityManager.getTransaction().commit();
 		entityManager.close();
 		factory.close();
 	}
 
-	
-	public static void insertToDatabase() {
+	public static void insertToOrdersTable() {
 
 		begin();
-
-//		Main.getOrders().setDescriptionOfOrder(Main.getOrders().getDescriptionOfOrder());
-//		Main.getOrders().setDeliveryDate(Main.getOrders().getDeliveryDate());
-//		Main.getOrders().setManager(Main.getOrders().getManager());
-//
-//		Main.getClient().setName(Main.getClient().getName());
-//		Main.getClient().setPhoneNumber(Main.getClient().getPhoneNumber());
-//
-//		Main.getProduct().setAmount(Main.getProduct().getAmount());
-//		Main.getProduct().setPrice(Main.getProduct().getPrice());
-//		Main.getProduct().setSupplier(Main.getProduct().getSupplier());
-//
-//		entityManager.persist(Main.getOrders());
-//		entityManager.persist(Main.getClient());
-//		entityManager.persist(Main.getProduct());
-
+		
+		AddOrderControlller ord = new AddOrderControlller();
+		Orders orders = new Orders();
+		
+		orders.setDescriptionOfOrder(ord.getOrdersBeanObj().getDescriptionOfOrder());
+		orders.setOrder_phoneNumber(ord.getOrdersBeanObj().getOrder_phoneNumber());
+		orders.setOrder_name(ord.getOrdersBeanObj().getOrder_name());
+		orders.setOrder_amount(ord.getOrdersBeanObj().getOrder_amount());
+		orders.setOrder_price(ord.getOrdersBeanObj().getOrder_price());
+		orders.setOrder_supplier(ord.getOrdersBeanObj().getOrder_supplier());
+		orders.setDeliveryDate(ord.getOrdersBeanObj().getDeliveryDate());
+		orders.setStatus(ord.getOrdersBeanObj().getStatus());
+		orders.setManager(ord.getOrdersBeanObj().getManager());
+		
+		System.out.println("Veikia");
+		entityManager.persist(orders);
+		System.out.println("Nebeveikia");
+		
 		end();
-	}
 
+	}
 
 	public static void getDataFromDatabase() {
 
 		begin();
-		
+
 		String jpql = "Select a From Supplier a";
 		Query query = entityManager.createQuery(jpql);
 		supplierList = query.getResultList();
-		
 		for (Supplier e : supplierList) {
 			supplierObservableList.add(e);
 		}
 		setSupplierObservableList(supplierObservableList);
-		
-		
+
 		String jpql2 = "Select a From Orders a";
 		Query query2 = entityManager.createQuery(jpql2);
 		ordersList = query2.getResultList();
-		
 		for (Orders e : ordersList) {
 			ordersObservableList.add(e);
 		}
 		setOrdersObservableList(ordersObservableList);
-		
-		// Orders orders = new Orders();
-		// orders.setDeliveryDate("2020");
-		// orders.setDescriptionOfOrder("uzsakymas naujas");
-		// orders.setManager("jonas");
-		// orders.setOrder_amount(23.0);
-		// orders.setOrder_name("Klientas");
-		// orders.setOrder_phoneNumber("8654231563");
-		// orders.setOrder_price(32.0);
-		// orders.setOrder_supplier("Etovis");
-		// orders.setStatus("Vykdomas");
-		// orders.setOrderDate(date);
-		
-		// entityManager.persist(orders);
 
 		end();
 	}
-
 
 	private static void remove() {
 		Supplier reference = entityManager.getReference(Supplier.class, 100002);
 		entityManager.remove(reference);
 	}
-	
-	
+
 	private static void update() {
 		Supplier existSupplier = new Supplier();
 		existSupplier.setCompanyName("Atnaujinimas");
@@ -127,27 +108,24 @@ public class TableManager {
 		entityManager.merge(existSupplier);
 	}
 
-	
 	private static void find() {
 		Supplier findSupplier = entityManager.find(Supplier.class, 100002);
 		System.out.println(findSupplier.getCompanyName());
 	}
+
+	//------------------------------------------SETERS AND GETERS-------------------------------------------//
 	
 	public static ObservableList<Orders> getOrdersObservableList() {
 		return ordersObservableList;
 	}
 
-
 	public static void setOrdersObservableList(ObservableList<Orders> ordersObservableList) {
 		TableManager.ordersObservableList = ordersObservableList;
 	}
 
-	
-
 	public static ObservableList<Supplier> getSupplierObservableList() {
 		return supplierObservableList;
 	}
-
 
 	public static void setSupplierObservableList(ObservableList<Supplier> supplierObservableList) {
 		TableManager.supplierObservableList = supplierObservableList;
