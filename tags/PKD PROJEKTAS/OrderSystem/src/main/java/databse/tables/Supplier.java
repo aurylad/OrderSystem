@@ -6,12 +6,13 @@ import javax.persistence.Id;
 @Entity
 public class Supplier {
 
+	// lauku reiksmes panaudotos iprasminti scope = "singleton" panaudojima
 	private Integer companyCode;
-	private String companyName;
-	private String country;
-	private String address;
-	private String phoneNumber;
-	private String person;
+	private String companyName = "Nenurodyta";
+	private String country = "Nenurodyta";
+	private String address = "Nenurodyta";
+	private String phoneNumber = "Nenurodyta";
+	private String person = "Nenurodyta";
 
 	@Id
 	public Integer getCompanyCode() {
