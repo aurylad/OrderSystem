@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 @Entity
 public class Product {
 
@@ -12,6 +14,9 @@ public class Product {
 	private double amount;
 	private double price;
 	private String supplier;
+	
+	
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,5 +51,19 @@ public class Product {
 	public void setSupplier(String supplier) {
 		this.supplier = supplier;
 	}
+
+//	private Supplier supplierObj;
+//	
+//	//Naudojamas autowire annotation
+//	public Supplier getSupplierObj() {
+//		return supplierObj;
+//	}
+//	
+//	@Autowired(required=false)
+//	public void setSupplierObj(Supplier supplierObj) {
+//		this.supplierObj = supplierObj;
+//	}
+	
+	
 
 }

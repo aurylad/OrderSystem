@@ -11,6 +11,7 @@ public class Client {
 	private Integer clientID;
 	private String name;
 	private String phoneNumber;
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,5 +38,6 @@ public class Client {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+
 
 }

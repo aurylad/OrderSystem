@@ -1,17 +1,12 @@
 package application;
 
 import java.net.URL;
-import java.util.Observable;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import beans.BeanAnnotation;
 import database.table.manager.TableManager;
 import databse.tables.Orders;
+
 import databse.tables.Supplier;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -20,6 +15,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -85,29 +83,37 @@ public class MainController implements Initializable {
 	@FXML
 	private TextField txtFieldSearch;
 
+	static Stage stage;
+	private int idNumberForRemove;
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+
 		TableManager.getDataFromDatabase();
 		setCellInfoTable();
 		setCellSupplierTable();
 		setValueToSupplierTextFields();
 		annotationBeanImpl();
 
+		// Šis selectionModel naudojamas įrašo ištrinimui, jog pažymėjus eilutę
+		// lentelėje, ji būtų ištrinta
+		tableOrders.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			Orders ordersList = tableOrders.getItems().get(tableOrders.getSelectionModel().getSelectedIndex());
+			idNumberForRemove = ordersList.getOrderId();
+
+		});
+
 	}
+	
 
 	private void annotationBeanImpl() {
-
-		ApplicationContext context = new AnnotationConfigApplicationContext(BeanAnnotation.class);
-
-		Supplier supplierObj = (Supplier) context.getBean("supplierBean");
-//		supplierObj.setAddress("annotation");
-//		System.out.println(supplierObj.getAddress());
-
+		Main.getSupplierObj().setCompanyName("UAB Etovis");
+		System.out.println(Main.getSupplierObj().getCompanyName());
 	}
 
+	
 	private void setCellInfoTable() {
-
+		
 		columnId.setCellValueFactory(new PropertyValueFactory<>("orderId"));
 		columnDescription.setCellValueFactory(new PropertyValueFactory<>("descriptionOfOrder"));
 		columnPhone.setCellValueFactory(new PropertyValueFactory<>("order_phoneNumber"));
@@ -123,7 +129,8 @@ public class MainController implements Initializable {
 		tableOrders.setItems(TableManager.getOrdersObservableList());
 	}
 
-	private void setCellSupplierTable() {
+	
+	public void setCellSupplierTable() {
 
 		columnCompanyCode.setCellValueFactory(new PropertyValueFactory<>("companyCode"));
 		columnCompanyName.setCellValueFactory(new PropertyValueFactory<>("companyName"));
@@ -135,6 +142,7 @@ public class MainController implements Initializable {
 		tableSupplier.setItems(TableManager.getSupplierObservableList());
 	}
 
+	
 	private void setValueToSupplierTextFields() {
 
 		tableSupplier.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -167,7 +175,7 @@ public class MainController implements Initializable {
 	//
 	// Alert alert = new Alert(AlertType.CONFIRMATION);
 	// alert.setTitle("Patvirtinimo pranešimas");
-	// alert.setHeaderText("Ar tikrai norite atnaujinti šį įrašą?");
+	// alert.setHeaderText("Ar tikrai norite ištrinti šį įrašą?");
 	// Optional<ButtonType> result = alert.showAndWait();
 	//
 	// if (result.get() == ButtonType.OK) {
@@ -177,17 +185,21 @@ public class MainController implements Initializable {
 	//
 	// }
 
-	public void setAddScene() {
+	public void setNewOrderScene() {
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/css/files/AddOrderWindow.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
-			Stage stage = new Stage();
+			stage = new Stage();
 			stage.setTitle("Naujas užsakymas");
 			stage.setScene(new Scene(root1));
 			stage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void closeScene() {
+		stage.close();
 	}
 
 	@FXML
@@ -216,5 +228,37 @@ public class MainController implements Initializable {
 			tableOrders.setItems(sortedList);
 		});
 	}
+
+	// panaudotas SceneBuilder mygtukui "ištrinti", naudotas
+	// setOnAction. Šis metodas nusiunčia idNumber, kuris gaunamas iš
+	// selectionModel (aprašytas aukščiau initialize metode), į TableManager klasę,
+	// kurioje įvygdomas sql užklausa. Taip pat panaikina įrašą iš lentelės
+	public void deleteRecord() {
+
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Patvirtinimo pranešimas");
+		alert.setHeaderText("Ar tikrai norite ištrinti šį įrašą?");
+		Optional<ButtonType> result = alert.showAndWait();
+
+		if (result.get() == ButtonType.OK) {
+			TableManager.deleteFromOrdersTable(idNumberForRemove);
+			Orders selectedItem = tableOrders.getSelectionModel().getSelectedItem();
+			tableOrders.getItems().remove(selectedItem);
+		}
+
+	}
+
+	// public void autowireAnnotation() {
+	// AbstractApplicationContext context = new
+	// ClassPathXmlApplicationContext("beans/Beans.xml");
+	// Product productObhect = (Product) context.getBean("client");
+	//
+	// System.out.println(productObhect.getAmount() +" "+ productObhect.getPrice()
+	// +" "+ productObhect.getSupplier());
+	//
+	// Supplier supplierObject = productObhect.getSupplierObj();
+	// System.out.println(supplierObject.getAddress() +" "+
+	// supplierObject.getCompanyName() +"...");
+	// }
 
 }
