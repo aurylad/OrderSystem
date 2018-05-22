@@ -36,7 +36,8 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) {
-		// ---------čia įvykdomas prieš paleidimą----------//
+
+		// inicijuojamos bean clasės ir bean obijektai
 		annotationContext = new AnnotationConfigApplicationContext(BeanAnnotation.class);
 		supplierObj = (Supplier) annotationContext.getBean("supplierBean");
 

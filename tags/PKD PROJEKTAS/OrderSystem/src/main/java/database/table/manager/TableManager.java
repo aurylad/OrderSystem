@@ -21,19 +21,17 @@ import javafx.collections.ObservableList;
 
 public class TableManager {
 
-	static MainController mainController;
-	static EntityManagerFactory factory;
-	static EntityManager entityManager;
-
+	 static MainController mainController;
+	 static EntityManagerFactory factory;
+	 static EntityManager entityManager;
 	// kai gaunamas atsakymas iš db, visi duomenys patalpinami į lista
-	private static List<Orders> ordersList;
-	private static List<Supplier> supplierList;
+	  static List<Orders> ordersList;
+	  static List<Supplier> supplierList;
 
-	// duomenys iš listo sudedami į observablelista, kuriuo užpildoma lentelė
-	private static ObservableList<Orders> ordersObservableList = FXCollections.observableArrayList();
-	private static ObservableList<Supplier> supplierObservableList = FXCollections.observableArrayList();
+//	// duomenys iš listo sudedami į observablelista, kuriuo užpildoma lentelė
+	 static ObservableList<Orders> ordersObservableList = FXCollections.observableArrayList();
+	 static ObservableList<Supplier> supplierObservableList = FXCollections.observableArrayList();
 
-	
 	private static void begin() {
 		try {
 			factory = Persistence.createEntityManagerFactory("OrderDb");
@@ -44,15 +42,16 @@ public class TableManager {
 		}
 	}
 
-	
 	private static void end() {
 		entityManager.getTransaction().commit();
 		entityManager.close();
 		factory.close();
 	}
 
-	
-	public static void insertToOrdersTable() {
+	// sudaromas obijektas, kurio reikšmėmis naudojantis bus įtrauktas naujas įrašas
+	// duomenų bazėje, naudojamas sudėtinis bean, todėl visa info bus išskaidyta
+	// skirtingoms db lentelėms, automatiškai
+	public static void insertToOrdersTable() { 
 		begin();
 
 		AddOrderControlller ord = new AddOrderControlller();
@@ -73,6 +72,7 @@ public class TableManager {
 
 		// kolekcijos papildymas naujais nariais
 		ordersObservableList.add(ordersObjectForDb);
+		
 
 		try {
 			// lentelės atnaujinimas, kai observable listas pasipildo nauju įrašu
@@ -96,7 +96,11 @@ public class TableManager {
 	public static void getDataFromDatabase() {
 
 		begin();
-
+//		performanceStage.turnOnLights();
+//		System.out.println(performanceStage.getCouner());
+		
+		// gaunamas listas su domenimis iš duomenų bzės, naudojamas užpildyti tiekėjų
+		// lentelę
 		String jpql = "Select a From Supplier a";
 		Query query = entityManager.createQuery(jpql);
 		supplierList = query.getResultList();
@@ -105,6 +109,8 @@ public class TableManager {
 		}
 		setSupplierObservableList(supplierObservableList);
 
+		// gaunamas listas su domenimis iš duomenų bzės, naudojamas užpildyti užsakymų
+		// lentelę
 		String jpql2 = "Select a From Orders a";
 		Query query2 = entityManager.createQuery(jpql2);
 		ordersList = query2.getResultList();
@@ -116,27 +122,27 @@ public class TableManager {
 		end();
 	}
 
-	private static void remove() {
-		Supplier reference = entityManager.getReference(Supplier.class, 100002);
-		entityManager.remove(reference);
-	}
-
-	private static void update() {
-		Supplier existSupplier = new Supplier();
-		existSupplier.setCompanyName("Atnaujinimas");
-		existSupplier.setAddress("Adresas");
-		existSupplier.setCompanyCode(100002);
-		existSupplier.setCountry("Salis");
-		existSupplier.setPerson("Asmuo");
-		existSupplier.setPhoneNumber("+3000000000");
-
-		entityManager.merge(existSupplier);
-	}
-
-	private static void find() {
-		Supplier findSupplier = entityManager.find(Supplier.class, 100002);
-		System.out.println(findSupplier.getCompanyName());
-	}
+	// private static void remove() {
+	// Supplier reference = entityManager.getReference(Supplier.class, 100002);
+	// entityManager.remove(reference);
+	// }
+	//
+	// private static void update() {
+	// Supplier existSupplier = new Supplier();
+	// existSupplier.setCompanyName("Atnaujinimas");
+	// existSupplier.setAddress("Adresas");
+	// existSupplier.setCompanyCode(100002);
+	// existSupplier.setCountry("Salis");
+	// existSupplier.setPerson("Asmuo");
+	// existSupplier.setPhoneNumber("+3000000000");
+	//
+	// entityManager.merge(existSupplier);
+	// }
+	//
+	// private static void find() {
+	// Supplier findSupplier = entityManager.find(Supplier.class, 100002);
+	// System.out.println(findSupplier.getCompanyName());
+	// }
 
 	// ------------------------------------------SETERS AND
 	// GETERS-------------------------------------------//
@@ -156,7 +162,9 @@ public class TableManager {
 	public static void setSupplierObservableList(ObservableList<Supplier> supplierObservableList) {
 		TableManager.supplierObservableList = supplierObservableList;
 	}
-	
-	
+
+	public static List<Orders> getOrdersList() {
+		return ordersList;
+	}
 
 }
