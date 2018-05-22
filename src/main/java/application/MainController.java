@@ -8,6 +8,10 @@ import database.table.manager.TableManager;
 import databse.tables.Orders;
 
 import databse.tables.Supplier;
+import discount.calculator.Discount;
+import discount.calculator.DiscountFactory;
+import discount.calculator.DiscountRecipient;
+import discount.calculator.SilverClient;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
@@ -94,7 +98,10 @@ public class MainController implements Initializable {
 		setCellSupplierTable();
 		setValueToSupplierTextFields();
 		annotationBeanImpl();
-
+		
+		discountCalculator();
+		
+		
 		// Šis selectionModel naudojamas įrašo ištrinimui, jog pažymėjus eilutę
 		// lentelėje, ji būtų ištrinta
 		tableOrders.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -104,16 +111,14 @@ public class MainController implements Initializable {
 		});
 
 	}
-	
 
 	private void annotationBeanImpl() {
-		Main.getSupplierObj().setCompanyName("UAB Etovis");
+		Main.getSupplierObj().setCompanyName("Annotation Bean Testing");
 		System.out.println(Main.getSupplierObj().getCompanyName());
 	}
 
-	
 	private void setCellInfoTable() {
-		
+
 		columnId.setCellValueFactory(new PropertyValueFactory<>("orderId"));
 		columnDescription.setCellValueFactory(new PropertyValueFactory<>("descriptionOfOrder"));
 		columnPhone.setCellValueFactory(new PropertyValueFactory<>("order_phoneNumber"));
@@ -129,7 +134,6 @@ public class MainController implements Initializable {
 		tableOrders.setItems(TableManager.getOrdersObservableList());
 	}
 
-	
 	public void setCellSupplierTable() {
 
 		columnCompanyCode.setCellValueFactory(new PropertyValueFactory<>("companyCode"));
@@ -142,7 +146,6 @@ public class MainController implements Initializable {
 		tableSupplier.setItems(TableManager.getSupplierObservableList());
 	}
 
-	
 	private void setValueToSupplierTextFields() {
 
 		tableSupplier.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -185,6 +188,7 @@ public class MainController implements Initializable {
 	//
 	// }
 
+	// paspaudus mygtuką "naujas" atidaromas naujas langas, forma įrašui pridėti
 	public void setNewOrderScene() {
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/css/files/AddOrderWindow.fxml"));
@@ -202,6 +206,10 @@ public class MainController implements Initializable {
 		stage.close();
 	}
 
+	// atliekama įrašų paieška lentelėje, pagal kelis lentelės laukus, įrašai
+	// ieškomi jau užpildytame observableListe, tuomet rasti įrašai sudedami į
+	// filteredLista ir atvaizduojamas šis listas, ištrynus paieškos raktažodžius
+	// gražinamas senas listas
 	@FXML
 	public void searchRecord(KeyEvent ke) {
 		FilteredList<Orders> filterData = new FilteredList<>(TableManager.getOrdersObservableList(), p -> true);
@@ -246,6 +254,18 @@ public class MainController implements Initializable {
 			tableOrders.getItems().remove(selectedItem);
 		}
 
+	}
+	
+	public void refreshData() {
+		tableOrders.getItems().clear();
+		TableManager.getDataFromDatabase();
+		
+	}
+	
+	public void discountCalculator() {
+		DiscountFactory discountFactory = new DiscountFactory();
+		Discount discount = discountFactory.getClientType("GOLDCLIENT");
+		discount.calculateDiscount();
 	}
 
 	// public void autowireAnnotation() {
