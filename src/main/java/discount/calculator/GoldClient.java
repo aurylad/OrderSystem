@@ -1,32 +1,44 @@
 package discount.calculator;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 import database.table.manager.TableManager;
 import databse.tables.Orders;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class GoldClient implements Discount {
-	
-	private String phoneNumber;
-	Set<String> s = new HashSet<>();
+
 	DiscountRecipient recipient;
-	int counter = 0;
-	
-	//For Factory Pattern
-	@Override
-	public void calculateDiscount() {
-		for (Orders orders : TableManager.getOrdersList()) {
-			if (s.add(orders.getOrder_phoneNumber()) == false) {
-				 recipient = new DiscountRecipient.Builder()
-						.phone(orders.getOrder_phoneNumber())
-						.build();
-				 counter++;
-			}
+	static ObservableList<DiscountRecipient> goldClientsObservableList = FXCollections.observableArrayList();
+	ArrayList <String> phoneList = new ArrayList<String>();
+	Set<String> uniquePhone;
+	Set<String> unique = new HashSet<>();
 		
+	//Factory Pattern
+	@Override
+	public ObservableList<DiscountRecipient> calculateDiscount() {
+		for (Orders orders : TableManager.getOrdersList()) {
+			if (unique.add(orders.getOrder_phoneNumber()) == false) {
+				phoneList.add(orders.getOrder_phoneNumber() + " " + orders.getOrder_name());
+			}
 		}
-		System.out.println(DiscountRecipient.getList());
-		System.out.println(counter);
+		
+		uniquePhone = new HashSet<String>(phoneList);
+		
+		for(String temp : uniquePhone) {
+			//Builder Pattern
+			recipient = new DiscountRecipient.Builder()
+			.phone(temp)
+			.dicount(15)
+			.build();
+			goldClientsObservableList.add(recipient);
+		}
+		
+		//Kolekcijos rūšiavimas (.sorted())
+		return goldClientsObservableList.sorted();
 	}
 
 }

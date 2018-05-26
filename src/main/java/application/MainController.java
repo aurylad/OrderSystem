@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import beans.BeansInitialization;
 import database.table.manager.TableManager;
 import databse.tables.Orders;
 
@@ -28,6 +29,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import orders.reminder.DateCalculator;
 
 public class MainController implements Initializable {
 
@@ -190,6 +192,10 @@ public class MainController implements Initializable {
 
 	// paspaudus mygtuką "naujas" atidaromas naujas langas, forma įrašui pridėti
 	public void setNewOrderScene() {
+		
+		DateCalculator dateCalculator = DateCalculator.getInstance();
+		dateCalculator.makePendingOrdersList();
+		
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/css/files/AddOrderWindow.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
@@ -265,7 +271,8 @@ public class MainController implements Initializable {
 	public void discountCalculator() {
 		DiscountFactory discountFactory = new DiscountFactory();
 		Discount discount = discountFactory.getClientType("GOLDCLIENT");
-		discount.calculateDiscount();
+		
+		System.out.println(discount.calculateDiscount());
 	}
 
 	// public void autowireAnnotation() {

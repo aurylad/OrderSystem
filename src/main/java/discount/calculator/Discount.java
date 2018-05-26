@@ -1,6 +1,9 @@
 package discount.calculator;
 
+import javafx.collections.ObservableList;
+
 public interface Discount {
 	//For Factory Pattern
-	public void calculateDiscount();
+	//Facade Pattern (Structural)
+	public ObservableList<DiscountRecipient> calculateDiscount();
 }
