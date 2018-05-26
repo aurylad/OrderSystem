@@ -5,6 +5,7 @@ import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
+import beans.BeansInitialization;
 import database.table.manager.TableManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -51,6 +52,7 @@ public class AddOrderControlller implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 
 		fillChoiceBoxes();
+
 	}
 
 	private void fillChoiceBoxes() {

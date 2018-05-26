@@ -6,6 +6,7 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import beans.BeanAnnotation;
+import beans.BeansInitialization;
 import databse.tables.Orders;
 import databse.tables.Supplier;
 import javafx.application.Application;
@@ -34,16 +35,18 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public static void main(String[] args) {
 
+		BeansInitialization performanceStage = BeansInitialization.getInstance();
+		
 		// inicijuojamos bean clasės ir bean obijektai
 		annotationContext = new AnnotationConfigApplicationContext(BeanAnnotation.class);
 		supplierObj = (Supplier) annotationContext.getBean("supplierBean");
 
 		beansContext = new ClassPathXmlApplicationContext("beans/Beans.xml");
 		ordersBeanObj = (Orders) beansContext.getBean("ordersBean");
-
+		
 		launch(args);
 	}
 

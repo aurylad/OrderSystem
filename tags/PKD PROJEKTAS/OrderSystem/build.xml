@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="OrderSystem">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../eclipse/java-oxygen/eclipse/"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <path id="Maven Dependencies.libraryclasspath">
+        <pathelement location="../../.m2/repository/org/hibernate/hibernate-core/5.3.0.CR2/hibernate-core-5.3.0.CR2.jar"/>
+        <pathelement location="../../.m2/repository/org/jboss/logging/jboss-logging/3.3.2.Final/jboss-logging-3.3.2.Final.jar"/>
+        <pathelement location="../../.m2/repository/javax/persistence/javax.persistence-api/2.2/javax.persistence-api-2.2.jar"/>
+        <pathelement location="../../.m2/repository/org/javassist/javassist/3.22.0-GA/javassist-3.22.0-GA.jar"/>
+        <pathelement location="../../.m2/repository/net/bytebuddy/byte-buddy/1.8.0/byte-buddy-1.8.0.jar"/>
+        <pathelement location="../../.m2/repository/antlr/antlr/2.7.7/antlr-2.7.7.jar"/>
+        <pathelement location="../../.m2/repository/org/jboss/spec/javax/transaction/jboss-transaction-api_1.2_spec/1.0.1.Final/jboss-transaction-api_1.2_spec-1.0.1.Final.jar"/>
+        <pathelement location="../../.m2/repository/org/jboss/jandex/2.0.3.Final/jandex-2.0.3.Final.jar"/>
+        <pathelement location="../../.m2/repository/com/fasterxml/classmate/1.3.0/classmate-1.3.0.jar"/>
+        <pathelement location="../../.m2/repository/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar"/>
+        <pathelement location="../../.m2/repository/org/hibernate/common/hibernate-commons-annotations/5.0.3.Final/hibernate-commons-annotations-5.0.3.Final.jar"/>
+        <pathelement location="../../.m2/repository/mysql/mysql-connector-java/8.0.11/mysql-connector-java-8.0.11.jar"/>
+        <pathelement location="../../.m2/repository/com/google/protobuf/protobuf-java/2.6.0/protobuf-java-2.6.0.jar"/>
+    </path>
+    <path id="JavaFX SDK.libraryclasspath">
+        <pathelement location="../../.p2/pool/plugins/org.eclipse.fx.ide.css.jfx8_3.0.0.201705220750.jar"/>
+    </path>
+    <path id="OrderSystem.classpath">
+        <pathelement location="target/classes"/>
+        <pathelement location="target/test-classes"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+        <path refid="JavaFX SDK.libraryclasspath"/>
+        <pathelement location="../../../../commons-logging-1.2/commons-logging-1.2.jar"/>
+        <pathelement location="../../../../commons-logging-1.2/commons-logging-1.2-javadoc.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-aop-5.0.4.RELEASE.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-aop-5.0.4.RELEASE-javadoc.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-aop-5.0.4.RELEASE-sources.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-aspects-5.0.4.RELEASE.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-aspects-5.0.4.RELEASE-javadoc.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-aspects-5.0.4.RELEASE-sources.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-beans-5.0.4.RELEASE.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-beans-5.0.4.RELEASE-javadoc.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-beans-5.0.4.RELEASE-sources.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-context-5.0.4.RELEASE.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-context-5.0.4.RELEASE-javadoc.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-context-5.0.4.RELEASE-sources.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-context-indexer-5.0.4.RELEASE.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-context-indexer-5.0.4.RELEASE-javadoc.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-context-indexer-5.0.4.RELEASE-sources.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-context-support-5.0.4.RELEASE.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-context-support-5.0.4.RELEASE-javadoc.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-context-support-5.0.4.RELEASE-sources.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-core-5.0.4.RELEASE.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-core-5.0.4.RELEASE-javadoc.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-core-5.0.4.RELEASE-sources.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-expression-5.0.4.RELEASE.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-expression-5.0.4.RELEASE-javadoc.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-expression-5.0.4.RELEASE-sources.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-instrument-5.0.4.RELEASE.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-instrument-5.0.4.RELEASE-javadoc.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-instrument-5.0.4.RELEASE-sources.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-jcl-5.0.4.RELEASE.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-jcl-5.0.4.RELEASE-javadoc.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-jcl-5.0.4.RELEASE-sources.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-jdbc-5.0.4.RELEASE.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-jdbc-5.0.4.RELEASE-javadoc.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-jdbc-5.0.4.RELEASE-sources.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-jms-5.0.4.RELEASE.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-jms-5.0.4.RELEASE-javadoc.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-jms-5.0.4.RELEASE-sources.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-messaging-5.0.4.RELEASE.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-messaging-5.0.4.RELEASE-javadoc.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-messaging-5.0.4.RELEASE-sources.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-orm-5.0.4.RELEASE.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-orm-5.0.4.RELEASE-javadoc.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-orm-5.0.4.RELEASE-sources.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-oxm-5.0.4.RELEASE.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-oxm-5.0.4.RELEASE-javadoc.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-oxm-5.0.4.RELEASE-sources.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-test-5.0.4.RELEASE.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-test-5.0.4.RELEASE-javadoc.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-test-5.0.4.RELEASE-sources.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-tx-5.0.4.RELEASE.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-tx-5.0.4.RELEASE-javadoc.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-tx-5.0.4.RELEASE-sources.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-web-5.0.4.RELEASE.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-web-5.0.4.RELEASE-javadoc.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-web-5.0.4.RELEASE-sources.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-webflux-5.0.4.RELEASE.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-webflux-5.0.4.RELEASE-javadoc.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-webflux-5.0.4.RELEASE-sources.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-webmvc-5.0.4.RELEASE.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-webmvc-5.0.4.RELEASE-javadoc.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-webmvc-5.0.4.RELEASE-sources.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-websocket-5.0.4.RELEASE.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-websocket-5.0.4.RELEASE-javadoc.jar"/>
+        <pathelement location="../../../../spring-framework-5.0.4.RELEASE/libs/spring-websocket-5.0.4.RELEASE-sources.jar"/>
+    </path>
+    <path id="run.TableManager2 (1).classpath">
+        <path refid="OrderSystem.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.UzsSistema.classpath">
+        <path refid="OrderSystem.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="target/classes"/>
+        <mkdir dir="target/test-classes"/>
+        <copy includeemptydirs="false" todir="target/classes">
+            <fileset dir="src/main/java">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="target/classes">
+            <fileset dir="src/main/resources">
+                <exclude name="**/*.java"/>
+                <exclude name="**"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="target/test-classes">
+            <fileset dir="src/test/java">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="target/test-classes">
+            <fileset dir="src/test/resources">
+                <exclude name="**/*.java"/>
+                <exclude name="**"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="target/classes"/>
+        <delete dir="target/test-classes"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="target/classes" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src/main/java"/>
+            <src path="src/main/resources"/>
+            <exclude name="**"/>
+            <classpath refid="OrderSystem.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="target/test-classes" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src/test/java"/>
+            <src path="src/test/resources"/>
+            <exclude name="**"/>
+            <classpath refid="OrderSystem.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="TableManager2 (1)">
+        <java classname="databse.tabl.example.TableManager2" failonerror="true" fork="yes">
+            <classpath refid="run.TableManager2 (1).classpath"/>
+        </java>
+    </target>
+    <target name="UzsSistema">
+        <java classname="application.Main" failonerror="true" fork="yes">
+            <classpath refid="run.UzsSistema.classpath"/>
+        </java>
+    </target>
+</project>

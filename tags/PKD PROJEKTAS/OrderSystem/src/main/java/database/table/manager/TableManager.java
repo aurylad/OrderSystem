@@ -1,8 +1,6 @@
 package database.table.manager;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +12,7 @@ import javax.persistence.Query;
 import application.AddOrderControlller;
 import application.Main;
 import application.MainController;
+import beans.BeansInitialization;
 import databse.tables.Orders;
 import databse.tables.Supplier;
 import javafx.collections.FXCollections;
@@ -27,6 +26,7 @@ public class TableManager {
 	// kai gaunamas atsakymas iš db, visi duomenys patalpinami į lista
 	  static List<Orders> ordersList;
 	  static List<Supplier> supplierList;
+	  static List<Orders> todayList;
 
 //	// duomenys iš listo sudedami į observablelista, kuriuo užpildoma lentelė
 	 static ObservableList<Orders> ordersObservableList = FXCollections.observableArrayList();
@@ -54,7 +54,7 @@ public class TableManager {
 	public static void insertToOrdersTable() { 
 		begin();
 
-		AddOrderControlller ord = new AddOrderControlller();
+		//AddOrderControlller ord = new AddOrderControlller();
 		Orders ordersObjectForDb = new Orders();
 
 		ordersObjectForDb.setDescriptionOfOrder(Main.getOrdersBeanObj().getDescriptionOfOrder());
@@ -96,8 +96,6 @@ public class TableManager {
 	public static void getDataFromDatabase() {
 
 		begin();
-//		performanceStage.turnOnLights();
-//		System.out.println(performanceStage.getCouner());
 		
 		// gaunamas listas su domenimis iš duomenų bzės, naudojamas užpildyti tiekėjų
 		// lentelę
