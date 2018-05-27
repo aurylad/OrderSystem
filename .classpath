@@ -94,5 +94,6 @@
 	<classpathentry kind="lib" path="C:/spring-framework-5.0.4.RELEASE/libs/spring-websocket-5.0.4.RELEASE.jar"/>
 	<classpathentry kind="lib" path="C:/spring-framework-5.0.4.RELEASE/libs/spring-websocket-5.0.4.RELEASE-javadoc.jar"/>
 	<classpathentry kind="lib" path="C:/spring-framework-5.0.4.RELEASE/libs/spring-websocket-5.0.4.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/Java/jre1.8.0_171/lib/ext/jfxrt.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
