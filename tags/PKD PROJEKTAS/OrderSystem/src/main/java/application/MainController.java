@@ -22,14 +22,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import orders.reminder.DateCalculator;
+import orders.reminder.RedButtonDecorator;
+import orders.reminder.SimpleButton;
 
 public class MainController implements Initializable {
 
@@ -89,6 +93,12 @@ public class MainController implements Initializable {
 	@FXML
 	private TextField txtFieldSearch;
 
+	@FXML
+	private static Button btnPendingOrders;
+	
+	@FXML
+	private static Button atidaryti;
+
 	static Stage stage;
 	private int idNumberForRemove;
 
@@ -100,10 +110,12 @@ public class MainController implements Initializable {
 		setCellSupplierTable();
 		setValueToSupplierTextFields();
 		annotationBeanImpl();
-		
+		//atidaryti.setText("FUCK YOU");
 		discountCalculator();
-		
-		
+		ordersReminder();
+		DateCalculator performanceStage = DateCalculator.getInstance();
+		System.out.println(performanceStage.makePendingOrdersList());
+
 		// Šis selectionModel naudojamas įrašo ištrinimui, jog pažymėjus eilutę
 		// lentelėje, ji būtų ištrinta
 		tableOrders.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -192,10 +204,7 @@ public class MainController implements Initializable {
 
 	// paspaudus mygtuką "naujas" atidaromas naujas langas, forma įrašui pridėti
 	public void setNewOrderScene() {
-		
-		DateCalculator dateCalculator = DateCalculator.getInstance();
-		dateCalculator.makePendingOrdersList();
-		
+
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/css/files/AddOrderWindow.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
@@ -261,18 +270,26 @@ public class MainController implements Initializable {
 		}
 
 	}
-	
+
 	public void refreshData() {
 		tableOrders.getItems().clear();
 		TableManager.getDataFromDatabase();
-		
+
 	}
-	
+
 	public void discountCalculator() {
 		DiscountFactory discountFactory = new DiscountFactory();
 		Discount discount = discountFactory.getClientType("GOLDCLIENT");
-		
+
 		System.out.println(discount.calculateDiscount());
+	}
+
+	public void ordersReminder() {
+		DateCalculator.makePendingOrdersList();
+	}
+
+	public static Button getBtnPendingOrders() {
+		return btnPendingOrders;
 	}
 
 	// public void autowireAnnotation() {
@@ -287,5 +304,7 @@ public class MainController implements Initializable {
 	// System.out.println(supplierObject.getAddress() +" "+
 	// supplierObject.getCompanyName() +"...");
 	// }
+	
+	
 
 }

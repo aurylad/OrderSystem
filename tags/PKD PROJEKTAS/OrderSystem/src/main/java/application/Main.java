@@ -37,7 +37,7 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
-
+		
 		BeansInitialization performanceStage = BeansInitialization.getInstance();
 		
 		// inicijuojamos bean clasės ir bean obijektai
