@@ -7,7 +7,8 @@ public abstract class ButtonDecorator implements Button {
 	      this.decoratedButton = decoratedButton;
 	   }
 
-	   public void setButton(){
+	   public String setButton(){
 	      decoratedButton.setButton();
+	      return  null;
 	   }	
 	}

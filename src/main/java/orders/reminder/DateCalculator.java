@@ -37,15 +37,15 @@ public class DateCalculator {
 
 		// Decorator Pattern, naudojamas mygtuko spalvai pakeisti, spalva pakeičiama jei
 		// pendingOrderObservableList nėra tuščias
-		if (pendingOrderObservableList.isEmpty()) {
-			System.out.println("lygus nuliuo");
-			Button button = new SimpleButton();
-			button.setButton();
-		} else {
-			System.out.println("nelygus nuliui");
-			Button decoratedButton = new RedButtonDecorator(new SimpleButton());
-			decoratedButton.setButton();
-		}
+//		if (pendingOrderObservableList.isEmpty()) {
+//			System.out.println("lygus nuliuo");
+//			Button button = new SimpleButton();
+//			button.setButton();
+//		} else {
+//			System.out.println("nelygus nuliui");
+//			Button decoratedButton = new RedButtonDecorator(new SimpleButton());
+//			decoratedButton.setButton();
+//		}
 		return pendingOrderObservableList;
 	}
 
