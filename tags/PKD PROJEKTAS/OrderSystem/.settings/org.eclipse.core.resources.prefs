@@ -6,3 +6,5 @@ encoding//src/main/java/database/table/manager/TableManager.java=UTF-8
 encoding//src/main/java/discount/calculator/GoldClient.java=UTF-8
 encoding//src/main/java/discount/calculator/SilverClient.java=UTF-8
 encoding//src/main/java/orders/reminder/DateCalculator.java=UTF-8
+encoding//src/main/java/orders/reminder/RedButtonDecorator.java=UTF-8
+encoding//src/main/java/orders/reminder/SimpleButton.java=UTF-8

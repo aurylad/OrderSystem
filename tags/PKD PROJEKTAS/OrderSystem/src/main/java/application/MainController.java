@@ -24,6 +24,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.Labeled;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -94,10 +96,7 @@ public class MainController implements Initializable {
 	private TextField txtFieldSearch;
 
 	@FXML
-	private static Button btnPendingOrders;
-	
-	@FXML
-	private static Button atidaryti;
+	Button btnPendingOrders;
 
 	static Stage stage;
 	private int idNumberForRemove;
@@ -110,20 +109,22 @@ public class MainController implements Initializable {
 		setCellSupplierTable();
 		setValueToSupplierTextFields();
 		annotationBeanImpl();
-		//atidaryti.setText("FUCK YOU");
 		discountCalculator();
-		ordersReminder();
-		DateCalculator performanceStage = DateCalculator.getInstance();
-		System.out.println(performanceStage.makePendingOrdersList());
+		
+		checkColor();
+																						//Mediator, Command, State
+		// ordersReminder();
+
+		// DateCalculator performanceStage = DateCalculator.getInstance();
+		// System.out.println(performanceStage.makePendingOrdersList());
 
 		// Šis selectionModel naudojamas įrašo ištrinimui, jog pažymėjus eilutę
 		// lentelėje, ji būtų ištrinta
 		tableOrders.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			Orders ordersList = tableOrders.getItems().get(tableOrders.getSelectionModel().getSelectedIndex());
 			idNumberForRemove = ordersList.getOrderId();
-
 		});
-
+		
 	}
 
 	private void annotationBeanImpl() {
@@ -216,6 +217,20 @@ public class MainController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+	
+	public void setNotesScene() {
+
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/css/files/notesWindow.fxml"));
+			Parent root1 = (Parent) fxmlLoader.load();
+			stage = new Stage();
+			stage.setTitle("Užrašai");
+			stage.setScene(new Scene(root1));
+			stage.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	public static void closeScene() {
 		stage.close();
@@ -288,9 +303,17 @@ public class MainController implements Initializable {
 		DateCalculator.makePendingOrdersList();
 	}
 
-	public static Button getBtnPendingOrders() {
-		return btnPendingOrders;
+	public void checkColor() {
+		// Naudojamas Decorate Pattern ir Singleton Pattern
+		if (DateCalculator.makePendingOrdersList().isEmpty()) {
+			orders.reminder.Button button = new SimpleButton();
+			btnPendingOrders.setStyle(button.setButton());
+		} else {
+			orders.reminder.Button decoratedButton = new RedButtonDecorator(new SimpleButton());
+			btnPendingOrders.setStyle(decoratedButton.setButton());;
+		}
 	}
+	
 
 	// public void autowireAnnotation() {
 	// AbstractApplicationContext context = new
@@ -304,7 +327,5 @@ public class MainController implements Initializable {
 	// System.out.println(supplierObject.getAddress() +" "+
 	// supplierObject.getCompanyName() +"...");
 	// }
-	
-	
 
 }

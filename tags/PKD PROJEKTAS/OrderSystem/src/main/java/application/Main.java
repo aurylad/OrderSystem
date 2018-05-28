@@ -21,13 +21,14 @@ public class Main extends Application {
 	static AbstractApplicationContext beansContext;
 	static Supplier supplierObj;
 	static Orders ordersBeanObj;
+	static Scene scene;
 
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/fxml/css/files/MainWindow.fxml"));
-			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("/fxml/css/files/application.css").toExternalForm());
+			scene = new Scene(root);
+			//scene.getStylesheets().add(getClass().getResource("/fxml/css/files/redButton.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setMaximized(true);
 			primaryStage.show();
@@ -35,18 +36,18 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String[] args) {
-		
+
 		BeansInitialization performanceStage = BeansInitialization.getInstance();
-		
+
 		// inicijuojamos bean clasės ir bean obijektai
 		annotationContext = new AnnotationConfigApplicationContext(BeanAnnotation.class);
 		supplierObj = (Supplier) annotationContext.getBean("supplierBean");
 
 		beansContext = new ClassPathXmlApplicationContext("beans/Beans.xml");
 		ordersBeanObj = (Orders) beansContext.getBean("ordersBean");
-		
+
 		launch(args);
 	}
 
@@ -58,4 +59,9 @@ public class Main extends Application {
 		return ordersBeanObj;
 	}
 
+	public static Scene getScene() {
+		return scene;
+	}
+
+	
 }

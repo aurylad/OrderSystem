@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="660.0" prefWidth="926.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NotesController">
+   <children>
+      <ListView fx:id="notesListView" layoutX="37.0" layoutY="30.0" prefHeight="392.0" prefWidth="866.0" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0" />
+      <Button fx:id="saveButton" layoutX="51.0" layoutY="579.0" mnemonicParsing="false" onAction="#saveNote" text="Išsaugoti" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" />
+      <TextArea fx:id="noteTextArea" layoutX="70.0" layoutY="500.0" prefHeight="99.0" prefWidth="586.0" promptText="Jūsų užrašas..." AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="450.0" />
+      <TextField fx:id="nameTextField" layoutX="30.0" layoutY="398.0" promptText="Įrašykite savo vardą" AnchorPane.bottomAnchor="230.0" AnchorPane.leftAnchor="30.0" />
+   </children>
+</AnchorPane>

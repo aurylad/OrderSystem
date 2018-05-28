@@ -20,17 +20,17 @@ import javafx.collections.ObservableList;
 
 public class TableManager {
 
-	 static MainController mainController;
-	 static EntityManagerFactory factory;
-	 static EntityManager entityManager;
+	static MainController mainController;
+	static EntityManagerFactory factory;
+	static EntityManager entityManager;
 	// kai gaunamas atsakymas iš db, visi duomenys patalpinami į lista
-	  static List<Orders> ordersList;
-	  static List<Supplier> supplierList;
-	  static List<Orders> todayList;
+	static List<Orders> ordersList;
+	static List<Supplier> supplierList;
+	static List<Orders> todayList;
 
-//	// duomenys iš listo sudedami į observablelista, kuriuo užpildoma lentelė
-	 static ObservableList<Orders> ordersObservableList = FXCollections.observableArrayList();
-	 static ObservableList<Supplier> supplierObservableList = FXCollections.observableArrayList();
+	// // duomenys iš listo sudedami į observablelista, kuriuo užpildoma lentelė
+	static ObservableList<Orders> ordersObservableList = FXCollections.observableArrayList();
+	static ObservableList<Supplier> supplierObservableList = FXCollections.observableArrayList();
 
 	private static void begin() {
 		try {
@@ -51,10 +51,10 @@ public class TableManager {
 	// sudaromas obijektas, kurio reikšmėmis naudojantis bus įtrauktas naujas įrašas
 	// duomenų bazėje, naudojamas sudėtinis bean, todėl visa info bus išskaidyta
 	// skirtingoms db lentelėms, automatiškai
-	public static void insertToOrdersTable() { 
+	public static void insertToOrdersTable() {
 		begin();
 
-		//AddOrderControlller ord = new AddOrderControlller();
+		// AddOrderControlller ord = new AddOrderControlller();
 		Orders ordersObjectForDb = new Orders();
 
 		ordersObjectForDb.setDescriptionOfOrder(Main.getOrdersBeanObj().getDescriptionOfOrder());
@@ -72,7 +72,6 @@ public class TableManager {
 
 		// kolekcijos papildymas naujais nariais
 		ordersObservableList.add(ordersObjectForDb);
-		
 
 		try {
 			// lentelės atnaujinimas, kai observable listas pasipildo nauju įrašu
@@ -96,7 +95,7 @@ public class TableManager {
 	public static void getDataFromDatabase() {
 
 		begin();
-		
+
 		// gaunamas listas su domenimis iš duomenų bzės, naudojamas užpildyti tiekėjų
 		// lentelę
 		String jpql = "Select a From Supplier a";
@@ -119,31 +118,6 @@ public class TableManager {
 
 		end();
 	}
-
-	// private static void remove() {
-	// Supplier reference = entityManager.getReference(Supplier.class, 100002);
-	// entityManager.remove(reference);
-	// }
-	//
-	// private static void update() {
-	// Supplier existSupplier = new Supplier();
-	// existSupplier.setCompanyName("Atnaujinimas");
-	// existSupplier.setAddress("Adresas");
-	// existSupplier.setCompanyCode(100002);
-	// existSupplier.setCountry("Salis");
-	// existSupplier.setPerson("Asmuo");
-	// existSupplier.setPhoneNumber("+3000000000");
-	//
-	// entityManager.merge(existSupplier);
-	// }
-	//
-	// private static void find() {
-	// Supplier findSupplier = entityManager.find(Supplier.class, 100002);
-	// System.out.println(findSupplier.getCompanyName());
-	// }
-
-	// ------------------------------------------SETERS AND
-	// GETERS-------------------------------------------//
 
 	public static ObservableList<Orders> getOrdersObservableList() {
 		return ordersObservableList;
