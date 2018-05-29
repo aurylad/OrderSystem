@@ -5,8 +5,8 @@ import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-import beans.BeansInitialization;
-import database.table.manager.TableManager;
+import database.table.manager.DatabaseManager;
+import database.table.manager.InsertData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,7 +23,7 @@ public class AddOrderControlller implements Initializable {
 	private ObservableList<String> managerChoiceBoxList = FXCollections.observableArrayList();
 	private String date;
 
-	MainController mainController = new MainController();
+	DatabaseManager insertData = new InsertData();
 
 	@FXML
 	private Button buttonCancel;
@@ -52,7 +52,6 @@ public class AddOrderControlller implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 
 		fillChoiceBoxes();
-
 	}
 
 	private void fillChoiceBoxes() {
@@ -65,9 +64,9 @@ public class AddOrderControlller implements Initializable {
 		managerBoxStatus.getItems().addAll(managerChoiceBoxList);
 	}
 
-	
 	// naudojamas setOnAction, gauna naudotojo įvestus duomenis ir priskiria juos
-	// Bean, tuomet iškviečia klasę iš TableManager, kurioje įvygdoma sql užklausa
+	// Bean'ams, tuomet iškviečia execute() klasę iš DatabaseManager obijekto
+	// (naudojamas Template Patternas)
 	public void setNewOrderValuesToBean() {
 
 		if (!(txtFieldDescription.getText().isEmpty())) {
@@ -100,7 +99,7 @@ public class AddOrderControlller implements Initializable {
 		if (!(managerBoxStatus.getValue().isEmpty())) {
 			Main.getOrdersBeanObj().setManager(managerBoxStatus.getValue());
 		}
-		TableManager.insertToOrdersTable();
+		insertData.execute();
 		MainController.closeScene();
 	}
 

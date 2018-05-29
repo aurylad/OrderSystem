@@ -3,7 +3,7 @@ package orders.reminder;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import database.table.manager.TableManager;
+import database.table.manager.DatabaseManager;
 import databse.tables.Orders;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,23 +29,12 @@ public class DateCalculator {
 
 	public static ObservableList<Orders> makePendingOrdersList() {
 		// Sudaro lista iš užsakymų įrašų, kurie turi būti įvykdyti šiandien
-		for (Orders orders : TableManager.getOrdersList()) {
+		for (Orders orders : DatabaseManager.getOrdersList()) {
 			if (orders.getDeliveryDate().equals(currentDate)) {
 				pendingOrderObservableList.add(orders);
 			}
 		}
 
-		// Decorator Pattern, naudojamas mygtuko spalvai pakeisti, spalva pakeičiama jei
-		// pendingOrderObservableList nėra tuščias
-//		if (pendingOrderObservableList.isEmpty()) {
-//			System.out.println("lygus nuliuo");
-//			Button button = new SimpleButton();
-//			button.setButton();
-//		} else {
-//			System.out.println("nelygus nuliui");
-//			Button decoratedButton = new RedButtonDecorator(new SimpleButton());
-//			decoratedButton.setButton();
-//		}
 		return pendingOrderObservableList;
 	}
 
