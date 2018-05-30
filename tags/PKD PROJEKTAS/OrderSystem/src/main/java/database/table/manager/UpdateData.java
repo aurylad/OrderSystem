@@ -4,10 +4,9 @@ import javax.persistence.Persistence;
 
 import org.springframework.dao.DataAccessException;
 
-import application.MainController;
-import databse.tables.Orders;
+import application.UpdateOrderController;
 
-public class DeleteData extends DatabaseManager {
+public class UpdateData extends DatabaseManager {
 
 	@Override
 	void initialize() {
@@ -23,8 +22,7 @@ public class DeleteData extends DatabaseManager {
 
 	@Override
 	void startExecute() {
-		Orders reference = entityManager.getReference(Orders.class, MainController.getIdNumberForRemove());
-		entityManager.remove(reference);
+		entityManager.merge(UpdateOrderController.getOrdersUpdateObj());
 	}
 
 	@Override

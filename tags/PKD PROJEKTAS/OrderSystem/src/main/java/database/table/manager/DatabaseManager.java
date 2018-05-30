@@ -38,6 +38,18 @@ public abstract class DatabaseManager {
 		end();
 	}
 
+	public final void startConnection() {
+		initialize();
+	}
+
+	public final void workWithData() {
+		startExecute();
+	}
+
+	public final void endConnection() {
+		end();
+	}
+
 	public static ObservableList<Orders> getOrdersObservableList() {
 		return ordersObservableList;
 	}

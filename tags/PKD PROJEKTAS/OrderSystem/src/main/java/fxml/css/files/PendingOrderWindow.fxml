@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="882.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PendingOrdersController">
+   <children>
+      <TabPane layoutY="25.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+         <tabs>
+            <Tab text="Užsakymai">
+               <content>
+                  <AnchorPane>
+                     <children>
+                        <TableView fx:id="tableOrders" layoutX="14.0" layoutY="44.0" prefHeight="543.0" prefWidth="349.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="40.0">
+                          <columns>
+                            <TableColumn fx:id="columnId" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" text="Nr." />
+                            <TableColumn fx:id="columnDescription" maxWidth="50000.0" minWidth="200.0" prefWidth="200.0" text="Užsakymo Apibūdinimas" />
+                              <TableColumn fx:id="columnPhone" maxWidth="165.0" minWidth="165.0" prefWidth="165.0" resizable="false" text="Tel. Numeris" />
+                              <TableColumn fx:id="columnClientName" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" text="Užsakovas" />
+                              <TableColumn fx:id="columnAmount" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" resizable="false" text="Kiekis" />
+                              <TableColumn fx:id="columnPrice" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" resizable="false" text="Kaina" />
+                              <TableColumn fx:id="columnSupplier" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" resizable="false" text="Tiekėjas" />
+                              <TableColumn fx:id="columnDevDate" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" resizable="false" text="Prist. Data" />
+                              <TableColumn fx:id="columnOrdDate" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" resizable="false" text="Užsak. Data" />
+                              <TableColumn fx:id="columnStatus" maxWidth="90.0" minWidth="90.0" prefWidth="90.0" resizable="false" text="Satusas" />
+                              <TableColumn fx:id="columnManager" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" resizable="false" text="Vadybininkas" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

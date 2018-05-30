@@ -29,6 +29,7 @@ public class DateCalculator {
 
 	public static ObservableList<Orders> makePendingOrdersList() {
 		// Sudaro lista iš užsakymų įrašų, kurie turi būti įvykdyti šiandien
+		
 		for (Orders orders : DatabaseManager.getOrdersList()) {
 			if (orders.getDeliveryDate().equals(currentDate)) {
 				pendingOrderObservableList.add(orders);
