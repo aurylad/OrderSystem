@@ -45,7 +45,7 @@ public class MainController implements Initializable {
 	DateCalculator performanceStage = DateCalculator.getInstance();
 
 	@FXML
-	private TableView<Orders> tableOrders;
+	protected TableView<Orders> tableOrders;
 	@FXML
 	private TableColumn<?, ?> columnId;
 	@FXML
@@ -107,8 +107,11 @@ public class MainController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 
 		// Gaunama iš DatabaseManager obijekto
-		
+		setValueToUpdateTextFields();
 		getData.execute();
+		
+		System.out.println(DatabaseManager.getOrdersList().size());
+		System.out.println(DatabaseManager.getOrdersObservableList().size());
 
 		setCellInfoTable();
 		setCellSupplierTable();
@@ -208,6 +211,36 @@ public class MainController implements Initializable {
 			System.out.println("nerastas failas, tokiu pavadinimu");
 		}
 	}
+	
+	public void setUpdateScene() throws IOException {
+
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/css/files/UpdateOrderInfoWindow.fxml"));
+			Parent root1 = (Parent) fxmlLoader.load();
+			stage = new Stage();
+			stage.setTitle("Atnaujinti įrašą");
+			stage.setScene(new Scene(root1));
+			stage.show();
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+			System.out.println("nerastas failas, tokiu pavadinimu");
+		}
+	}
+	
+	public void setPendingScene() throws IOException {
+
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/css/files/PendingOrderWindow.fxml"));
+			Parent root1 = (Parent) fxmlLoader.load();
+			stage = new Stage();
+			stage.setTitle("Laukiantys užsakymai");
+			stage.setScene(new Scene(root1));
+			stage.show();
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+			System.out.println("nerastas failas, tokiu pavadinimu");
+		}
+	}
 
 	public static void closeScene() {
 		stage.close();
@@ -296,32 +329,24 @@ public class MainController implements Initializable {
 		return idNumberForRemove;
 	}
 
-	// public void updateSupplierTable() {
-	//
-	// if (txtFieldCompanyCode.getText().isEmpty() ||
-	// txtFieldCompanyName.getText().isEmpty()
-	// || txtFieldCompanyCountry.getText().isEmpty() ||
-	// txtFieldCompanyAdress.getText().isEmpty()
-	// || txtFieldCompanyPhone.getText().isEmpty() ||
-	// txtFieldCompanyPerson.getText().isEmpty()) {
-	//
-	// Alert alert = new Alert(AlertType.ERROR);
-	// alert.setTitle("Klaidos pranešimas");
-	// alert.setHeaderText("Rasti tušti laukai!");
-	// alert.setContentText("Prašome užpildyti visus laukus");
-	// alert.showAndWait();
-	//
-	// } else {
-	//
-	// Alert alert = new Alert(AlertType.CONFIRMATION);
-	// alert.setTitle("Patvirtinimo pranešimas");
-	// alert.setHeaderText("Ar tikrai norite ištrinti šį įrašą?");
-	// Optional<ButtonType> result = alert.showAndWait();
-	//
-	// if (result.get() == ButtonType.OK) {
-	//
-	// }
-	// }
-	//
-	// }
+	
+	public void setValueToUpdateTextFields(){
+
+		tableOrders.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			Orders ordersList = tableOrders.getItems().get(tableOrders.getSelectionModel().getSelectedIndex());
+			Main.getOrdersBeanObj().setOrderId(ordersList.getOrderId());
+			Main.getOrdersBeanObj().setDescriptionOfOrder(ordersList.getDescriptionOfOrder());
+			Main.getOrdersBeanObj().setOrder_phoneNumber(ordersList.getOrder_phoneNumber());
+			Main.getOrdersBeanObj().setOrder_name(ordersList.getOrder_name());
+			Main.getOrdersBeanObj().setOrder_amount(ordersList.getOrder_amount());
+			Main.getOrdersBeanObj().setOrder_price(ordersList.getOrder_price());
+			Main.getOrdersBeanObj().setOrder_supplier(ordersList.getOrder_supplier());
+			Main.getOrdersBeanObj().setDeliveryDate(ordersList.getDeliveryDate());
+			Main.getOrdersBeanObj().setStatus(ordersList.getStatus());
+			Main.getOrdersBeanObj().setManager(ordersList.getManager());
+			
+		});
+		
+	}
+	
 }
