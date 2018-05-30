@@ -1,6 +1,10 @@
 package database.table.manager;
 
+import java.sql.SQLException;
+
 import javax.persistence.Persistence;
+
+import org.springframework.dao.DataAccessException;
 
 import application.MainController;
 import databse.tables.Orders;
@@ -9,9 +13,14 @@ public class DeleteData extends DatabaseManager {
 
 	@Override
 	void initialize() {
-		factory = Persistence.createEntityManagerFactory("OrderDb");
-		entityManager = factory.createEntityManager();
-		entityManager.getTransaction().begin();
+		try {
+			factory = Persistence.createEntityManagerFactory("OrderDb");
+			entityManager = factory.createEntityManager();
+			entityManager.getTransaction().begin();
+		} catch (DataAccessException e) {
+			e.getMessage();
+			System.out.println("Duomenų bazė neprieinama");
+		}
 	}
 
 	@Override

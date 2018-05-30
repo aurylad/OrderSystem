@@ -2,24 +2,30 @@ package database.table.manager;
 
 import javax.persistence.Persistence;
 
+import org.springframework.dao.DataAccessException;
+
 import application.Main;
-import application.MainController;
 import databse.tables.Orders;
 
 public class InsertData extends DatabaseManager {
 
 	@Override
 	void initialize() {
-		factory = Persistence.createEntityManagerFactory("OrderDb");
-		entityManager = factory.createEntityManager();
-		entityManager.getTransaction().begin();
-
+		try {
+			factory = Persistence.createEntityManagerFactory("OrderDb");
+			entityManager = factory.createEntityManager();
+			entityManager.getTransaction().begin();
+		} catch (DataAccessException e) {
+			e.getMessage();
+			System.out.println("Duomenų bazė neprieinama");
+		}
 	}
 
 	@Override
 	void startExecute() {
+
 		Orders ordersObjectForDb = new Orders();
-		
+
 		ordersObjectForDb.setDescriptionOfOrder(Main.getOrdersBeanObj().getDescriptionOfOrder());
 		ordersObjectForDb.setOrder_phoneNumber(Main.getOrdersBeanObj().getOrder_phoneNumber());
 		ordersObjectForDb.setOrder_name(Main.getOrdersBeanObj().getOrder_name());
@@ -29,18 +35,11 @@ public class InsertData extends DatabaseManager {
 		ordersObjectForDb.setDeliveryDate(Main.getOrdersBeanObj().getDeliveryDate());
 		ordersObjectForDb.setStatus(Main.getOrdersBeanObj().getStatus());
 		ordersObjectForDb.setManager(Main.getOrdersBeanObj().getManager());
-		
+
 		entityManager.persist(ordersObjectForDb);
 
 		// kolekcijos papildymas naujais nariais
 		ordersObservableList.add(ordersObjectForDb);
-
-		try {
-			// lentelės atnaujinimas, kai observable listas pasipildo nauju įrašu
-			//MainController.setCellSupplierTable();
-		} catch (Exception e) {
-			System.out.println(e);
-		}
 	}
 
 	@Override

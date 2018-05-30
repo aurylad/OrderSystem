@@ -1,10 +1,16 @@
 package application;
 
+import java.io.IOException;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import autowire.Cleaner;
+import autowire.Manager;
+import autowire.Seller;
+import autowire.Storekeeper;
 import beans.BeanAnnotation;
 import databse.tables.Orders;
 import databse.tables.Supplier;
@@ -23,7 +29,7 @@ public class Main extends Application {
 	static Scene scene;
 
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) throws IOException {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/fxml/css/files/MainWindow.fxml"));
 			scene = new Scene(root);
@@ -31,8 +37,9 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.setMaximized(true);
 			primaryStage.show();
-		} catch (Exception e) {
+		} catch (IllegalStateException e) {
 			e.printStackTrace();
+			System.out.println("nerastas failas, tokiu pavadinimu");
 		}
 	}
 
@@ -44,6 +51,28 @@ public class Main extends Application {
 
 		beansContext = new ClassPathXmlApplicationContext("beans/Beans.xml");
 		ordersBeanObj = (Orders) beansContext.getBean("ordersBean");
+
+		// autowire byName testing
+		Manager managerBean = (Manager) beansContext.getBean("manager");
+		System.out.println(managerBean.toString());
+
+		// autowire byType testing
+		Seller sellerBean = (Seller) beansContext.getBean("seller");
+		sellerBean.getPersonalData().setPosting("seller");
+		sellerBean.getPersonalData().setWorkExperience("seller");
+		System.out.println(sellerBean.toString());
+
+		// autowire constructor testing
+		Storekeeper storekeeperBean = (Storekeeper) beansContext.getBean("storekeeper");
+		storekeeperBean.getPersonalData().setPosting("storekeeper");
+		storekeeperBean.getPersonalData().setWorkExperience("storekeeper");
+		System.out.println(storekeeperBean.toString());
+
+		// autowire @Autowired annotation testing
+		Cleaner cleanerBean = (Cleaner) beansContext.getBean("cleaner");
+		cleanerBean.getPersonalData().setPosting("cleaner");
+		cleanerBean.getPersonalData().setWorkExperience("cleaner");
+		System.out.println(cleanerBean.toString());
 
 		launch(args);
 	}
