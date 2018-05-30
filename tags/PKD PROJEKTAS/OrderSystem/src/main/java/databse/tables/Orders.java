@@ -15,6 +15,8 @@ import javax.persistence.SecondaryTables;
 @SecondaryTables({ @SecondaryTable(name = "Client", pkJoinColumns = @PrimaryKeyJoinColumn(name = "clientID")),
 				   @SecondaryTable(name = "Product", pkJoinColumns = @PrimaryKeyJoinColumn(name = "productID")) })
 public class Orders {
+	
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

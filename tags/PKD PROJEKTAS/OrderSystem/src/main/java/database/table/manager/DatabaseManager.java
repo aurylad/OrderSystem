@@ -1,5 +1,6 @@
 package database.table.manager;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.persistence.EntityManager;

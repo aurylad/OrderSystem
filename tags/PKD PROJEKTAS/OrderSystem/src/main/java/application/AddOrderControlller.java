@@ -79,12 +79,24 @@ public class AddOrderControlller implements Initializable {
 			Main.getOrdersBeanObj().setOrder_name(txtFieldClientName.getText());
 		}
 		if (!(txtFieldAmount.getText().isEmpty())) {
-			double amount = Double.parseDouble(txtFieldAmount.getText());
-			Main.getOrdersBeanObj().setOrder_amount(amount);
+			try {
+				double amount = Double.parseDouble(txtFieldAmount.getText());
+				Main.getOrdersBeanObj().setOrder_amount(amount);
+			} catch (NumberFormatException e) {
+				System.out.println(e.getMessage());
+				System.out.println("Įvesti netinkamo formato duomenys");
+			}
+
 		}
 		if (!(txtFieldPrice.getText().isEmpty())) {
-			double price = Double.parseDouble(txtFieldPrice.getText());
-			Main.getOrdersBeanObj().setOrder_price(price);
+			try {
+				double price = Double.parseDouble(txtFieldPrice.getText());
+				Main.getOrdersBeanObj().setOrder_price(price);
+			} catch (NumberFormatException e) {
+				System.out.println(e.getMessage());
+				System.out.println("Įvesti netinkamo formato duomenys");
+			}
+
 		}
 		if (!(txtFieldSupplier.getText().isEmpty())) {
 			Main.getOrdersBeanObj().setOrder_supplier(txtFieldSupplier.getText());

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import custom.exception.EmptyNoteFieldExceptions;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -33,10 +34,17 @@ public class NotesController implements Initializable {
 	}
 
 	public void saveNote() throws IOException {
+
 		// Mediator Pattern
 		// Sudaro užrašą, naudojant vartotojo vardą ir tekstą, atvaizduoja jį ListView
 		User notesUser = new User(nameTextField.getText());
-		notesUser.sendNote(noteTextArea.getText());
+
+		try {
+			notesUser.sendNote(noteTextArea.getText());
+		} catch (EmptyNoteFieldExceptions e) {
+			System.out.println(e);
+		}
+
 		notesListView.setItems(Note.getNotesObservableList());
 	}
 

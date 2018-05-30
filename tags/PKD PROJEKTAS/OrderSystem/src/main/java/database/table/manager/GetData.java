@@ -3,6 +3,8 @@ package database.table.manager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import org.springframework.dao.DataAccessException;
+
 import databse.tables.Orders;
 import databse.tables.Supplier;
 
@@ -12,14 +14,18 @@ public class GetData extends DatabaseManager {
 
 	@Override
 	void initialize() {
-		factory = Persistence.createEntityManagerFactory("OrderDb");
-		entityManager = factory.createEntityManager();
-		entityManager.getTransaction().begin();
-
+		try {
+			factory = Persistence.createEntityManagerFactory("OrderDb");
+			entityManager = factory.createEntityManager();
+			entityManager.getTransaction().begin();
+		} catch (DataAccessException e) {
+			e.getMessage();
+			System.out.println("Duomenų bazė neprieinama");
+		}
 	}
 
 	@Override
-	void startExecute() {
+	void startExecute(){
 		// gaunamas listas su domenimis iš duomenų bzės, naudojamas užpildyti tiekėjų
 		// lentelę
 		String jpql = "Select a From Supplier a";

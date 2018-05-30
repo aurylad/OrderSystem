@@ -4,12 +4,15 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean
+		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
 
 	<!-- Sudetinis Bean -->
 	<!-- nurodyta scope = "prototype" tuo atveju, jei naudotojas nenurodys atitinkamos 
 		reiksmes, nebutu itraukta pries tai naudota reiksme -->
 
-	<bean name="ordersBean" class="databse.tables.Orders" scope="prototype">
+	<bean name="ordersBean" class="databse.tables.Orders"
+		scope="prototype">
 		<property name="descriptionOfOrder" value="Nenurodyta"></property>
 		<property name="manager" value="Nenurodyta"></property>
 		<property name="status" value="vykdomas"></property>
@@ -20,8 +23,35 @@
 		<property name="order_amount" value="0"></property>
 		<property name="order_price" value="0"></property>
 	</bean>
-	
-	
 
+	<bean name="personalData" class="autowire.PersonalData">
+		<property name="posting" value="manager"></property>
+		<property name="workExperience" value="manager, advisor"></property>
+	</bean>
+
+	<!-- AUTOWIRE ByName -->
+	<bean name="manager" class="autowire.Manager" autowire="byName">
+		<property name="lastName" value="Jonaitis"></property>
+		<property name="name" value="Jonas"></property>
+	</bean>
+
+	<!-- AUTOWIRE ByType -->
+	<bean name="seller" class="autowire.Seller" autowire="byType">
+		<property name="lastName" value="Petras"></property>
+		<property name="name" value="Petraitis"></property>
+	</bean>
+
+	<!-- AUTOWIRE constructor -->
+	<bean name="storekeeper" class="autowire.Storekeeper"
+		autowire="constructor">
+		<property name="lastName" value="Tomas"></property>
+		<property name="name" value="Tomaitis"></property>
+	</bean>
+	
+	<!-- AUTOWIRE @Autowired annotation -->
+	<bean name="cleaner" class="autowire.Cleaner">
+		<property name="lastName" value="Ona"></property>
+		<property name="name" value="Onaitienė"></property>
+	</bean>
 
 </beans>
