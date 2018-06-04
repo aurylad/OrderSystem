@@ -47,6 +47,24 @@ public class DiscountRecipient {
 		}
 
 	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public int getDicount() {
+		return dicount;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public void setDicount(int dicount) {
+		this.dicount = dicount;
+	}
+	
+	
 	
 
 }
