@@ -13,12 +13,13 @@ import databse.tables.Orders;
 import databse.tables.Supplier;
 import discount.calculator.Discount;
 import discount.calculator.DiscountFactory;
+import discount.calculator.DiscountRecipient;
+import discount.calculator.GoldClient;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.fxml.LoadException;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -109,9 +110,6 @@ public class MainController implements Initializable {
 		// Gaunama iš DatabaseManager obijekto
 		setValueToUpdateTextFields();
 		getData.execute();
-		
-		System.out.println(DatabaseManager.getOrdersList().size());
-		System.out.println(DatabaseManager.getOrdersObservableList().size());
 
 		setCellInfoTable();
 		setCellSupplierTable();
@@ -120,7 +118,7 @@ public class MainController implements Initializable {
 		annotationBeanImpl();
 
 		// sudaro sąrašą klientų, kurie gauna nuolaidą
-		discountCalculator();
+		//discountCalculator();
 
 		// Pakeičia mygtuko spalvą, pagal įrašus lentelėje
 		performanceStage.makePendingOrdersList();
@@ -210,6 +208,7 @@ public class MainController implements Initializable {
 			e.printStackTrace();
 			System.out.println("nerastas failas, tokiu pavadinimu");
 		}
+		
 	}
 	
 	public void setUpdateScene() throws IOException {
@@ -309,7 +308,8 @@ public class MainController implements Initializable {
 		DiscountFactory discountFactory = new DiscountFactory();
 		Discount discount = discountFactory.getClientType("GOLDCLIENT");
 
-		discount.calculateDiscount();
+		System.out.println(discount.calculateDiscount());
+		
 	}
 
 	// pakeičia mygtuko spalvą į žalią, jei yra užsakymų kurie turi būti pristatyti
@@ -345,7 +345,22 @@ public class MainController implements Initializable {
 			Main.getOrdersBeanObj().setStatus(ordersList.getStatus());
 			Main.getOrdersBeanObj().setManager(ordersList.getManager());
 			
-		});
+		});	
+	}
+	
+	public void fillDiscountReceiversTable () throws IOException {
+		
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/css/files/DiscountReceiversWindow.fxml"));
+			Parent root1 = (Parent) fxmlLoader.load();
+			stage = new Stage();
+			stage.setTitle("Laukiantys užsakymai");
+			stage.setScene(new Scene(root1));
+			stage.show();
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+			System.out.println("nerastas failas, tokiu pavadinimu");
+		}
 		
 	}
 	

@@ -4,15 +4,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import database.table.manager.DatabaseManager;
-import database.table.manager.InsertData;
 import database.table.manager.UpdateData;
 import databse.tables.Orders;
-import databse.tables.Supplier;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 public class UpdateOrderController extends MainController implements Initializable {
 	@FXML
@@ -78,6 +75,7 @@ public class UpdateOrderController extends MainController implements Initializab
 		
 		DatabaseManager updateData = new UpdateData();
 		updateData.execute();
+		MainController.closeScene();
 	}
 
 	public static Orders getOrdersUpdateObj() {

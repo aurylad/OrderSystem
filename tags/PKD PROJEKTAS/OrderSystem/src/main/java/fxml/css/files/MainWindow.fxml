@@ -59,6 +59,7 @@
                         <Button fx:id="btnPendingOrders" layoutX="21.0" layoutY="15.0" mnemonicParsing="false" onAction="#setPendingScene" text="Laukiantys užsakymai" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
                         <Label fx:id="label" layoutX="617.0" layoutY="51.0" />
                         <Button layoutX="219.0" layoutY="30.0" mnemonicParsing="false" onAction="#setNotesScene" text="Užrašinė" AnchorPane.leftAnchor="240.0" AnchorPane.topAnchor="20.0" />
+                        <Button layoutX="418.0" layoutY="20.0" mnemonicParsing="false" onAction="#fillDiscountReceiversTable" text="Nuolaidos" />
                      </children>
                   </AnchorPane>
                </content>
