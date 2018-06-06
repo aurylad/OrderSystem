@@ -3,11 +3,17 @@ package orders.reminder;
 public abstract class ButtonDecorator implements Button {
 	   protected Button decoratedButton;
 
-	   public ButtonDecorator(Button decoratedButton){
+	   /**
+	 * @param decoratedButton
+	 */
+	public ButtonDecorator(Button decoratedButton){
 	      this.decoratedButton = decoratedButton;
 	   }
 
-	   public String setButton(){
+	   /* (non-Javadoc)
+	 * @see orders.reminder.Button#setButton()
+	 */
+	public String setButton(){
 	      decoratedButton.setButton();
 	      return  null;
 	   }	

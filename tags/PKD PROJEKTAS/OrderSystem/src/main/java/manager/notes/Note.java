@@ -14,6 +14,12 @@ public class Note {
 	static ObservableList<String> notesObservableList;
 
 	// Mediator Pattern
+	/**
+	 * @param user
+	 * @param message
+	 * @throws IOException
+	 * @throws EmptyNoteFieldExceptions
+	 */
 	public static void buildNote(User user, String message) throws IOException, EmptyNoteFieldExceptions {
 
 		if (message.equals("")) {
@@ -43,6 +49,9 @@ public class Note {
 		}
 	}
 
+	/**
+	 * @return
+	 */
 	public static ObservableList<String> getNotesObservableList() {
 		return notesObservableList;
 	}

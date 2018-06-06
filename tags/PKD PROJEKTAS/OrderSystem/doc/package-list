@@ -1,0 +1,10 @@
+application
+autowire
+beans
+custom.exception
+database.table.manager
+databse.tables
+discount.calculator
+jUnit.test
+manager.notes
+orders.reminder

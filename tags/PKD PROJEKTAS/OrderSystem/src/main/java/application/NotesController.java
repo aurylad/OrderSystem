@@ -28,15 +28,21 @@ public class NotesController implements Initializable {
 	@FXML
 	private TextField nameTextField;
 
+	/* (non-Javadoc)
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 	}
 
+	/**
+	 * @throws IOException
+	 */
 	public void saveNote() throws IOException {
 
 		// Mediator Pattern
-		// Sudaro užrašą, naudojant vartotojo vardą ir tekstą, atvaizduoja jį ListView
+		// Sudaro uzrasa, naudojant vartotojo vardą ir teksta, atvaizduoja ji ListView
 		User notesUser = new User(nameTextField.getText());
 
 		try {

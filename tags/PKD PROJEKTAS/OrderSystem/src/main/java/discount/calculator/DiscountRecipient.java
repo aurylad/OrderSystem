@@ -12,12 +12,18 @@ public class DiscountRecipient {
 	 * @param phone
 	 * @param dicount
 	 */
+	/**
+	 * @param builder
+	 */
 	public DiscountRecipient(Builder builder) {
 		this.phone = builder.phone;
 		this.dicount = builder.dicount;
 
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "DiscountRecipient [phone=" + phone + ", dicount=" + dicount + "]";
@@ -48,18 +54,30 @@ public class DiscountRecipient {
 
 	}
 
+	/**
+	 * @return
+	 */
 	public String getPhone() {
 		return phone;
 	}
 
+	/**
+	 * @return
+	 */
 	public int getDicount() {
 		return dicount;
 	}
 
+	/**
+	 * @param phone
+	 */
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
+	/**
+	 * @param dicount
+	 */
 	public void setDicount(int dicount) {
 		this.dicount = dicount;
 	}

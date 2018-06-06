@@ -5,10 +5,16 @@ public class RedButtonDecorator extends ButtonDecorator {
 	private String decoratedButtonStyle;
 	private String greenButtom;
 
+	/**
+	 * @param decoratedShape
+	 */
 	public RedButtonDecorator(Button decoratedShape) {
 		super(decoratedShape);
 	}
 
+	/* (non-Javadoc)
+	 * @see orders.reminder.ButtonDecorator#setButton()
+	 */
 	@Override
 	public String setButton() {
 		decoratedButton.setButton();
@@ -19,6 +25,10 @@ public class RedButtonDecorator extends ButtonDecorator {
 		return greenButtom;
 	}
 
+	/**
+	 * @param decoratedButton
+	 * @return
+	 */
 	private String setRedBorder(Button decoratedButton) {
 		decoratedButtonStyle = "-fx-background-color: \r\n" + "        #3c7fb1,\r\n"
 				+ "        linear-gradient(#fafdfe, #e8f5fc),\r\n"

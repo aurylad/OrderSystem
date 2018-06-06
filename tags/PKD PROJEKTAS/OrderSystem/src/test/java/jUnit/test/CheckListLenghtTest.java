@@ -20,6 +20,8 @@ class CheckListLenghtTest {
 	
 	@Test
 	void check_if_all_list_element_are_added_to_observableList() {
+		getData = new GetData();
+		getData.execute();	
 		int list = DatabaseManager.getOrdersList().size();
 		int ordersObservableList = DatabaseManager.getOrdersObservableList().size();
 		

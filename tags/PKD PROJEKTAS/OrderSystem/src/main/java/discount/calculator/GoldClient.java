@@ -18,6 +18,10 @@ public class GoldClient implements Discount {
 	Set<String> unique = new HashSet<>();
 		
 	//Factory Pattern
+
+	/* (non-Javadoc)
+	 * @see discount.calculator.Discount#calculateDiscount()
+	 */
 	@Override
 	public ObservableList<DiscountRecipient> calculateDiscount() {
 		for (Orders orders : DatabaseManager.getOrdersList()) {
@@ -37,7 +41,7 @@ public class GoldClient implements Discount {
 			goldClientsObservableList.add(recipient);
 		}
 		
-		//Kolekcijos rūšiavimas (.sorted())
+		//Kolekcijos rusiavimas (.sorted())
 		return goldClientsObservableList.sorted();
 	}
 

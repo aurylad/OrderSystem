@@ -48,12 +48,18 @@ public class AddOrderControlller implements Initializable {
 	@FXML
 	private Button buttonAdd;
 
+	/* (non-Javadoc)
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
 		fillChoiceBoxes();
 	}
 
+	/**
+	 * 
+	 */
 	private void fillChoiceBoxes() {
 		choiceBoxStatus.setValue("--Pasirinkti--");
 		statusChoiceBoxList.addAll("--Pasirinkti--", "vykdomas", "baigtas", "nutrauktas");
@@ -65,8 +71,11 @@ public class AddOrderControlller implements Initializable {
 	}
 
 	// naudojamas setOnAction, gauna naudotojo įvestus duomenis ir priskiria juos
-	// Bean'ams, tuomet iškviečia execute() klasę iš DatabaseManager obijekto
+	// Bean'ams, tuomet iskviecia execute() klase is DatabaseManager obijekto
 	// (naudojamas Template Patternas)
+	/**
+	 * 
+	 */
 	public void setNewOrderValuesToBean() {
 
 		if (!(txtFieldDescription.getText().isEmpty())) {
