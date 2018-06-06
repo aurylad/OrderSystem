@@ -15,11 +15,18 @@ public class DateCalculator {
 	private static ObservableList<Orders> pendingOrderObservableList = FXCollections.observableArrayList();
 
 	// Singleton Patter, obijektas sukuriamas tik vieną kartą
+	
 	// private konstruktorius neleidžia kitoms klasėms sukurti šios klasės obijekto
+	/**
+	 * 
+	 */
 	private DateCalculator() {
 
 	}
 
+	/**
+	 * @return
+	 */
 	public synchronized static DateCalculator getInstance() {
 		if (INSTANCE == null) {
 			INSTANCE = new DateCalculator();
@@ -27,6 +34,9 @@ public class DateCalculator {
 		return INSTANCE;
 	}
 
+	/**
+	 * @return
+	 */
 	public static ObservableList<Orders> makePendingOrdersList() {
 		// Sudaro lista iš užsakymų įrašų, kurie turi būti įvykdyti šiandien
 		

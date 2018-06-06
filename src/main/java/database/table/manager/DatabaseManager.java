@@ -15,10 +15,19 @@ public abstract class DatabaseManager {
 
 	// -----------------TEMPLATE PATTERN (BEHAVIORAL)-------------------//
 
+	/**
+	 * 
+	 */
 	abstract void initialize();
 
+	/**
+	 * 
+	 */
 	abstract void startExecute();
 
+	/**
+	 * 
+	 */
 	abstract void end();
 
 	static EntityManagerFactory factory;
@@ -29,6 +38,9 @@ public abstract class DatabaseManager {
 	static List<Supplier> supplierList;
 
 	// template method
+	/**
+	 * 
+	 */
 	public final void execute() {
 
 		initialize();
@@ -38,26 +50,44 @@ public abstract class DatabaseManager {
 		end();
 	}
 
+	/**
+	 * 
+	 */
 	public final void startConnection() {
 		initialize();
 	}
 
+	/**
+	 * 
+	 */
 	public final void workWithData() {
 		startExecute();
 	}
 
+	/**
+	 * 
+	 */
 	public final void endConnection() {
 		end();
 	}
 
+	/**
+	 * @return
+	 */
 	public static ObservableList<Orders> getOrdersObservableList() {
 		return ordersObservableList;
 	}
 
+	/**
+	 * @return
+	 */
 	public static ObservableList<Supplier> getSupplierObservableList() {
 		return supplierObservableList;
 	}
 
+	/**
+	 * @return
+	 */
 	public static List<Orders> getOrdersList() {
 		return ordersList;
 	}

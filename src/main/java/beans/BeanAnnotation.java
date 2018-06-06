@@ -9,6 +9,9 @@ import databse.tables.Supplier;
 @Configuration
 public class BeanAnnotation {
 	
+	/**
+	 * @return
+	 */
 	@Bean(name="supplierBean")
 	@Scope("singleton")
 	public Supplier supplier() {

@@ -2,6 +2,10 @@ package discount.calculator;
 
 public class DiscountFactory {
 
+	/**
+	 * @param clientType
+	 * @return
+	 */
 	public Discount getClientType(String clientType){
 
 		if (clientType.equalsIgnoreCase("SILVERCLIENT")) {

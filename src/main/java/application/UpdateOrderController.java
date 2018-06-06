@@ -41,11 +41,17 @@ public class UpdateOrderController extends MainController implements Initializab
 
 	static Orders ordersUpdateObj;
 	
+	/* (non-Javadoc)
+	 * @see application.MainController#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		setValueToUpdateTextFieldss();
 	}
 
+	/**
+	 * 
+	 */
 	private void setValueToUpdateTextFieldss() {
 
 		txtFieldManager.setText(Main.getOrdersBeanObj().getManager());
@@ -59,6 +65,9 @@ public class UpdateOrderController extends MainController implements Initializab
 		txtFieldStatus.setText(Main.getOrdersBeanObj().getStatus());
 	}
 
+	/**
+	 * 
+	 */
 	public void updateOrderRecord() {
 		Orders ordersUpdateObj = new Orders();
 		ordersUpdateObj.setManager(txtFieldManager.getText());
@@ -78,10 +87,16 @@ public class UpdateOrderController extends MainController implements Initializab
 		MainController.closeScene();
 	}
 
+	/**
+	 * @return
+	 */
 	public static Orders getOrdersUpdateObj() {
 		return ordersUpdateObj;
 	}
 
+	/**
+	 * @param ordersUpdateObj
+	 */
 	public void setOrdersUpdateObj(Orders ordersUpdateObj) {
 		this.ordersUpdateObj = ordersUpdateObj;
 	}

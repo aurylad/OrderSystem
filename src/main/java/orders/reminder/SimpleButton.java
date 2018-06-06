@@ -3,6 +3,9 @@ package orders.reminder;
 public class SimpleButton implements Button {
 	private String greyButtom;
 
+	/* (non-Javadoc)
+	 * @see orders.reminder.Button#setButton()
+	 */
 	@Override
 	public String setButton() {
 		// Nebuvo galima mygtuko pakeitimą atlikti šiame metode, nes javafx neleidžia

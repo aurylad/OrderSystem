@@ -23,11 +23,17 @@ import javafx.fxml.FXMLLoader;
 public class Main extends Application {
 
 	static ApplicationContext annotationContext;
+	/**
+	 * 
+	 */
 	static AbstractApplicationContext beansContext;
 	static Supplier supplierObj;
 	static Orders ordersBeanObj;
 	static Scene scene;
 
+	/* (non-Javadoc)
+	 * @see javafx.application.Application#start(javafx.stage.Stage)
+	 */
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		try {
@@ -43,9 +49,13 @@ public class Main extends Application {
 		}
 	}
 
+
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
-		// inicijuojamos bean clasės ir bean obijektai
+		// inicijuojamos bean class ir bean obijektai
 		annotationContext = new AnnotationConfigApplicationContext(BeanAnnotation.class);
 		supplierObj = (Supplier) annotationContext.getBean("supplierBean");
 
@@ -77,14 +87,23 @@ public class Main extends Application {
 		launch(args);
 	}
 
+	/**
+	 * @return
+	 */
 	public static Supplier getSupplierObj() {
 		return supplierObj;
 	}
 
+	/**
+	 * @return
+	 */
 	public static Orders getOrdersBeanObj() {
 		return ordersBeanObj;
 	}
 
+	/**
+	 * @return
+	 */
 	public static Scene getScene() {
 		return scene;
 	}

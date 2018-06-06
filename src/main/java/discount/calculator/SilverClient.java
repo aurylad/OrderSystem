@@ -17,6 +17,9 @@ public class SilverClient implements Discount {
 	Set<String> unique = new HashSet<>();
 		
 	//Factory Pattern
+	/* (non-Javadoc)
+	 * @see discount.calculator.Discount#calculateDiscount()
+	 */
 	@Override
 	public ObservableList<DiscountRecipient> calculateDiscount() {
 		for (Orders orders : DatabaseManager.getOrdersList()) {
@@ -36,7 +39,7 @@ public class SilverClient implements Discount {
 			silverClientObservableList.add(recipient);
 		}
 		
-		//Kolekcijos rūšiavimas (.sorted())
+		//Kolekcijos rusiavimas (.sorted())
 		return silverClientObservableList.sorted();
 	}
 

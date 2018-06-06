@@ -21,12 +21,18 @@ public class DeleteData extends DatabaseManager {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see database.table.manager.DatabaseManager#startExecute()
+	 */
 	@Override
 	void startExecute() {
 		Orders reference = entityManager.getReference(Orders.class, MainController.getIdNumberForRemove());
 		entityManager.remove(reference);
 	}
 
+	/* (non-Javadoc)
+	 * @see database.table.manager.DatabaseManager#end()
+	 */
 	@Override
 	void end() {
 		entityManager.getTransaction().commit();

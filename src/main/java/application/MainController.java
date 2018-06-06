@@ -43,7 +43,7 @@ public class MainController implements Initializable {
 
 	DatabaseManager getData = new GetData();
 	DatabaseManager deleteData = new DeleteData();
-	DateCalculator performanceStage = DateCalculator.getInstance();
+	static DateCalculator performanceStage = DateCalculator.getInstance();
 
 	@FXML
 	protected TableView<Orders> tableOrders;
@@ -104,10 +104,13 @@ public class MainController implements Initializable {
 	@FXML
 	Button btnPendingOrders;
 
+	/* (non-Javadoc)
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		// Gaunama iš DatabaseManager obijekto
+		// Gaunama is DatabaseManager obijekto
 		setValueToUpdateTextFields();
 		getData.execute();
 
@@ -117,15 +120,15 @@ public class MainController implements Initializable {
 
 		annotationBeanImpl();
 
-		// sudaro sąrašą klientų, kurie gauna nuolaidą
+		// sudaro sarasa klientu, kurie gauna nuolaida
 		//discountCalculator();
 
-		// Pakeičia mygtuko spalvą, pagal įrašus lentelėje
+		// Pakeicia mygtuko spalva, pagal irasus lenteleje
 		performanceStage.makePendingOrdersList();
 		checkColor();
 
-		// Šis selectionModel naudojamas įrašo ištrinimui, jog pažymėjus eilutę
-		// lentelėje, būtų gautas įrašo ID
+		// Sis selectionModel naudojamas iraso istrinimui, jog pazymėjus eilute
+		// lenteleje, butu gautas iraso ID
 		tableOrders.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			Orders ordersList = tableOrders.getItems().get(tableOrders.getSelectionModel().getSelectedIndex());
 			idNumberForRemove = ordersList.getOrderId();
@@ -133,11 +136,17 @@ public class MainController implements Initializable {
 
 	}
 
+	/**
+	 * 
+	 */
 	private void annotationBeanImpl() {
 		Main.getSupplierObj().setCompanyName("Annotation Bean Testing");
 		Main.getSupplierObj().getCompanyName();
 	}
 
+	/**
+	 * 
+	 */
 	private void setCellInfoTable() {
 
 		columnId.setCellValueFactory(new PropertyValueFactory<>("orderId"));
@@ -155,6 +164,9 @@ public class MainController implements Initializable {
 		tableOrders.setItems(DatabaseManager.getOrdersObservableList());
 	}
 
+	/**
+	 * 
+	 */
 	public void setCellSupplierTable() {
 
 		columnCompanyCode.setCellValueFactory(new PropertyValueFactory<>("companyCode"));
@@ -167,6 +179,9 @@ public class MainController implements Initializable {
 		tableSupplier.setItems(DatabaseManager.getSupplierObservableList());
 	}
 
+	/**
+	 * 
+	 */
 	private void setValueToSupplierTextFields() {
 
 		tableSupplier.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -180,6 +195,9 @@ public class MainController implements Initializable {
 		});
 	}
 
+	/**
+	 * @throws IOException
+	 */
 	public void setNewOrderScene() throws IOException {
 
 		try {
@@ -195,6 +213,9 @@ public class MainController implements Initializable {
 		}
 	}
 
+	/**
+	 * @throws IOException
+	 */
 	public void setNotesScene() throws IOException {
 
 		try {
@@ -211,6 +232,9 @@ public class MainController implements Initializable {
 		
 	}
 	
+	/**
+	 * @throws IOException
+	 */
 	public void setUpdateScene() throws IOException {
 
 		try {
@@ -226,6 +250,9 @@ public class MainController implements Initializable {
 		}
 	}
 	
+	/**
+	 * @throws IOException
+	 */
 	public void setPendingScene() throws IOException {
 
 		try {
@@ -245,10 +272,13 @@ public class MainController implements Initializable {
 		stage.close();
 	}
 
-	// atliekama įrašų paieška lentelėje, pagal kelis lentelės laukus, įrašai
-	// ieškomi jau užpildytame observableListe, tuomet rasti įrašai sudedami į
-	// filteredLista ir atvaizduojamas šis listas, ištrynus paieškos raktažodžius
-	// gražinamas senas listas
+	// atliekama irasų paieska lenteleje, pagal kelis lenteles laukus, irasai
+	// ieskomi jau uzpildytame observableListe, tuomet rasti irasai sudedami i
+	// filteredLista ir atvaizduojamas sis listas, istrynus paieskos raktazodzius
+	// grazinamas senas listas
+	/**
+	 * @param ke
+	 */
 	@FXML
 	public void searchRecord(KeyEvent ke) {
 		FilteredList<Orders> filterData = new FilteredList<>(DatabaseManager.getOrdersObservableList(), p -> true);
@@ -278,8 +308,11 @@ public class MainController implements Initializable {
 		});
 	}
 
-	// Ištrina pažymėtą įrašą iš lentelės ir iškviečia klasę execute() kuri ištrina
-	// įrašą iš duomenų bazės
+	// Istrina pazymeta irasa is lenteles ir iskviecia klase execute() kuri istrina
+	// irasa is duomenu bazes
+	/**
+	 * 
+	 */
 	public void deleteRecord() {
 
 		Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -295,6 +328,9 @@ public class MainController implements Initializable {
 
 	}
 
+	/**
+	 * 
+	 */
 	public void refreshData() {
 		tableOrders.getItems().clear();
 		tableSupplier.getItems().clear();
@@ -302,8 +338,11 @@ public class MainController implements Initializable {
 		tableOrders.setItems(DatabaseManager.getOrdersObservableList());
 	}
 
-	// iškviečia klasę, kuri sudaro listą klientų, kurie gauna nuolaida ir lista
-	// atvaizduoja lentelėje
+	// iskviecia klase, kuri sudaro listą klientu, kurie gauna nuolaida ir lista
+	// atvaizduoja lenteleje
+	/**
+	 * 
+	 */
 	public void discountCalculator() {
 		DiscountFactory discountFactory = new DiscountFactory();
 		Discount discount = discountFactory.getClientType("GOLDCLIENT");
@@ -312,8 +351,11 @@ public class MainController implements Initializable {
 		
 	}
 
-	// pakeičia mygtuko spalvą į žalią, jei yra užsakymų kurie turi būti pristatyti
-	// šiandien, jei tokių užsakymų nėra, tuomet spalva - mėlyna
+	// pakeicia mygtuko spalva i zalia, jei yra uzsakymu kurie turi buti pristatyti
+	// siandien, jei tokiu uszakymų nera, tuomet spalva - melyna
+	/**
+	 * 
+	 */
 	public void checkColor() {
 		// Naudojamas Decorate Pattern ir Singleton Pattern
 		if (performanceStage.makePendingOrdersList().isEmpty()) {
@@ -330,6 +372,9 @@ public class MainController implements Initializable {
 	}
 
 	
+	/**
+	 * 
+	 */
 	public void setValueToUpdateTextFields(){
 
 		tableOrders.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -348,6 +393,9 @@ public class MainController implements Initializable {
 		});	
 	}
 	
+	/**
+	 * @throws IOException
+	 */
 	public void fillDiscountReceiversTable () throws IOException {
 		
 		try {
@@ -363,5 +411,11 @@ public class MainController implements Initializable {
 		}
 		
 	}
+
+	public static DateCalculator getPerformanceStage() {
+		return performanceStage;
+	}
+	
+	
 	
 }

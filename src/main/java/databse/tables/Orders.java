@@ -40,94 +40,163 @@ public class Orders {
 	private String order_supplier;
 
 
+	/**
+	 * @return
+	 */
 	public Integer getOrderId() {
 		return orderId;
 	}
 
+	/**
+	 * @param orderId
+	 */
 	public void setOrderId(Integer orderId) {
 		this.orderId = orderId;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getDescriptionOfOrder() {
 		return descriptionOfOrder;
 	}
 
+	/**
+	 * @param descriptionOfOrder
+	 */
 	public void setDescriptionOfOrder(String descriptionOfOrder) {
 		this.descriptionOfOrder = descriptionOfOrder;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getManager() {
 		return manager;
 	}
 
+	/**
+	 * @param manager
+	 */
 	public void setManager(String manager) {
 		this.manager = manager;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getStatus() {
 		return status;
 	}
 
+	/**
+	 * @param status
+	 */
 	public void setStatus(String status) {
 		this.status = status;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getDeliveryDate() {
 		return deliveryDate;
 	}
 
+	/**
+	 * @param deliveryDate
+	 */
 	public void setDeliveryDate(String deliveryDate) {
 		this.deliveryDate = deliveryDate;
 	}
 
+	/**
+	 * @return
+	 */
 	public Date getOrderDate() {
 		return orderDate;
 	}
 
+	/**
+	 * @param orderDate
+	 */
 	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getOrder_name() {
 		return order_name;
 	}
 
+	/**
+	 * @param order_name
+	 */
 	public void setOrder_name(String order_name) {
 		this.order_name = order_name;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getOrder_phoneNumber() {
 		return order_phoneNumber;
 	}
 
+	/**
+	 * @param order_phoneNumber
+	 */
 	public void setOrder_phoneNumber(String order_phoneNumber) {
 		this.order_phoneNumber = order_phoneNumber;
 	}
 
+	/**
+	 * @return
+	 */
 	public Double getOrder_amount() {
 		return order_amount;
 	}
 
+	/**
+	 * @param order_amount
+	 */
 	public void setOrder_amount(Double order_amount) {
 		this.order_amount = order_amount;
 	}
 
+	/**
+	 * @return
+	 */
 	public Double getOrder_price() {
 		return order_price;
 	}
 
+	/**
+	 * @param order_price
+	 */
 	public void setOrder_price(Double order_price) {
 		this.order_price = order_price;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getOrder_supplier() {
 		return order_supplier;
 	}
 
+	/**
+	 * @param order_supplier
+	 */
 	public void setOrder_supplier(String order_supplier) {
 		this.order_supplier = order_supplier;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "Orders [orderId=" + orderId + ", descriptionOfOrder=" + descriptionOfOrder + ", manager=" + manager

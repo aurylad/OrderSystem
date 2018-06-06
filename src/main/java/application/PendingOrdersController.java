@@ -48,12 +48,18 @@ public class PendingOrdersController implements Initializable {
 	@FXML
 	private TableColumn<?, ?> columnDevDate;
 
+	/* (non-Javadoc)
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		setCellInfoTable();
 		
 	}
 	
+	/**
+	 * 
+	 */
 	private void setCellInfoTable() {
 
 		
@@ -69,7 +75,7 @@ public class PendingOrdersController implements Initializable {
 		columnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 		columnManager.setCellValueFactory(new PropertyValueFactory<>("manager"));
 
-		tableOrders.setItems(DateCalculator.makePendingOrdersList());
+		tableOrders.setItems(MainController.getPerformanceStage().makePendingOrdersList());
 		tableOrders.getItems().clear();
 		System.out.println(DateCalculator.makePendingOrdersList());
 	}

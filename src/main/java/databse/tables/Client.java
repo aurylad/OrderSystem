@@ -13,28 +13,64 @@ public class Client {
 	private String phoneNumber;
 	
 
+	/**
+	 * @return
+	 */
+	/**
+	 * @return
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getClientID() {
 		return clientID;
 	}
 
+	/**
+	 * @param clientID
+	 */
+	/**
+	 * @param clientID
+	 */
 	public void setClientID(Integer clientID) {
 		this.clientID = clientID;
 	}
 
+	/**
+	 * @return
+	 */
+	/**
+	 * @return
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * @param name
+	 */
+	/**
+	 * @param name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * @return
+	 */
+	/**
+	 * @return
+	 */
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
+	/**
+	 * @param phoneNumber
+	 */
+	/**
+	 * @param phoneNumber
+	 */
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
